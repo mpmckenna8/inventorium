@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+div {
+  border: 1mm dashed red;
+}
+
+.itemListDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.itemListName {
+  flex:4;
+}
+
+.itemListQuantity {
+  flex:2
+}
