@@ -13,10 +13,11 @@ const setUpCollections = function(items, bags) {
   //    console.log(coll_item)
       let itemdetails = items.find((d) => d.p_id == coll_item[0])
     //  console.log('item Details', itemdetails)
+      let itemCopy =Object.assign({}, itemdetails)
 
       if(itemdetails) {
-        itemdetails.quantity = coll_item[1];
-        detailed_collection_items.push(itemdetails)
+        itemCopy.quantity = coll_item[1];
+        detailed_collection_items.push(itemCopy)
       }
 
 
@@ -24,7 +25,7 @@ const setUpCollections = function(items, bags) {
     collection.items = detailed_collection_items;
     doneBags.push(collection)
   }
-  console.log('done matching items for bags', doneBags)
+//  console.log('done matching items for bags', doneBags)
   return doneBags;
 }
 

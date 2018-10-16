@@ -12,21 +12,30 @@ const fetchItems = (userData) => (dispatch) => {
   if(shouldFetchItems(userData)) {
     var fetchItemsUrl = 'http://localhost:8080/items/' +  userData.name;
 
+
     fetch(fetchItemsUrl, {
-      cache: 'no-cache',
-      mode: "cors", // no-cors, cors, *same-origin
+      cache: "reload",
       referrer: "no-referrer", // no-referrer, *client
       method: 'GET',
       headers: {
+      //  'Access-Control-Max-Age': 10,
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+
+
       }
     })
     .then(res => res.json())
     .then(json => {
       //  console.log('sucessfully fetched items and response is', json)
-        dispatch(fetchItemsSuccess(json.data))
+            let fetchedData =  Object.assign({}, {items:json.data.items, bags: json.data.bags })
+        dispatch(fetchItemsSuccess(fetchedData))
     })
+    .catch(error => {
+      console.error('Error getting the user items:', error)
+      dispatch(fetchItemsFailure())
+    }
+    );
 
 
   }
@@ -51,9 +60,10 @@ export const FETCH_ITEMS_SUCCESS = "FETCH_ITEMS_SUCCESS";
 const fetchItemsSuccess = (resData) => {
 
   console.log('need to parse resData = ', resData)
-  let user_items = resData.items;
+  let user_items = resData.items
 
   let user_collections = setUpCollections(user_items, resData.bags)
+
   return {
     type:FETCH_ITEMS_SUCCESS,
     items: user_items,

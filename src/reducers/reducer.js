@@ -3,11 +3,13 @@
 import { combineReducers } from 'redux'
 import {FETCH_ITEMS_SUCCESS} from '../actions/actions.js'
 
+import { EDIT_ITEM } from '../actions/item_actions.js'
+
 function User(state={
   items:[],
   collections: [],
   name:"test",
-  email:"",
+  email:"test",
   needsUpdate: true
 }, action) {
   switch (action.type) {
@@ -17,6 +19,15 @@ function User(state={
       state.collections = action.collections;
       return Object.assign({}, state)
     }
+    case EDIT_ITEM: {
+      let itemIndex = state.items.findIndex((d) => d.p_id === action.item.p_id)
+
+      state.items[itemIndex] = action.item;
+
+      return Object.assign({}, state)
+
+    }
+
     default:
       return state;
   }
