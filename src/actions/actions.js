@@ -4,7 +4,8 @@
 import setUpCollections from '../helpers/set_up_user_collection.js'
 
 export const fetchItemsIfNeeded = (userName) => (dispatch, getState) => {
-  dispatch(fetchItems(getState().User))
+
+  return dispatch(fetchItems(getState().User))
 }
 
 const fetchItems = (userData) => (dispatch) => {
@@ -13,7 +14,7 @@ const fetchItems = (userData) => (dispatch) => {
     var fetchItemsUrl = 'http://localhost:8080/items/' +  userData.name;
 
 
-    fetch(fetchItemsUrl, {
+    return fetch(fetchItemsUrl, {
       cache: "reload",
       referrer: "no-referrer", // no-referrer, *client
       method: 'GET',

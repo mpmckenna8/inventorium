@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {Link, Redirect, withRouter} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 
 import categorizeItems from "../helpers/categorize_items.js";
 
 import ItemListView from "../components/item_list_view.js"
-
-
 
 
 class ItemList extends Component {

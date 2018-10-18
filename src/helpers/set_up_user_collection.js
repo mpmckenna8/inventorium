@@ -11,7 +11,7 @@ const setUpCollections = function(items, bags) {
   //  detailed_collection_items.concat(collection.items);
     for(let coll_item of collection.items) {
   //    console.log(coll_item)
-      let itemdetails = items.find((d) => d.p_id == coll_item[0])
+      let itemdetails = items.find( (d) => parseInt(d.p_id, 10) === parseInt(coll_item[0], 10))
     //  console.log('item Details', itemdetails)
       let itemCopy =Object.assign({}, itemdetails)
 
