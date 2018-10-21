@@ -1,26 +1,55 @@
 import React from 'react'
 
+import {addItem} from '../actions/item_actions.js'
 
-const AddItemForm = ({params}) => {
+const AddItemForm = (props, params) => {
+  console.log('params = ',props, params)
+  let dispatch = props.dispatch;
 
+  console.log('dispatch = ', dispatch)
   let input;
   let description = ''
   let count = 0;
   let weight = 0;
   let category = ""
   let toggleCategoryTextInput = function(changedCategory) {
-    console.log('need to change category', changedCategory)
+  //  console.log('need to change category', changedCategory, params)
+
     category = changedCategory;
   }
-  
+  let addNewItem = props.addnewitem;
+  let submitNewItem = (e, dispatcher) => {
+    e.preventDefault()
+
+    console.log("this =", this )
+    let newItem = {
+              name: input.value,
+              description: description.value,
+              quantity: count.value,
+              weight: weight.value,
+              category: document.getElementById('catSelect').value
+            }
+    if(this.dispatch) {
+
+      this.dispatch(addItem(newItem))
+      console.log('newItem to add', newItem, params)
+
+    }
+    else {
+      console.log('there no dispatch')
+    }
+  }
+  this.dispatch = props.dispatch
+  submitNewItem.bind(this)
 
   return (
     <div>
+    <h2>
+      Add a new Item or choose an existing item below
+    </h2>
     <form id="newItemForm"
-      onSubmit={e => {
-        e.preventDefault()
-      }
-    }>
+      //onSubmit={submitNewItem}
+      >
 
     <div className="addItemDiv">
       <label className="addLabel">Name:</label>
@@ -34,6 +63,7 @@ const AddItemForm = ({params}) => {
       </div>
 
       <br />
+
       <div className="addItemDiv">
         <label className="addLabel">description:</label>
         <input
@@ -80,7 +110,7 @@ const AddItemForm = ({params}) => {
       <div className="addItemDiv">
         <label className="addLabel">Category:</label>
           <select name="select" defaultValue="other" className="addSelect" id="catSelect" onChange={(e) => {
-                //  console.log('e is', e.target.value);
+                // console.log('para is', e.target.value);
                   toggleCategoryTextInput(e.target.value)
               }}>
                       <option value="clothing">Clothing</option>
@@ -90,9 +120,25 @@ const AddItemForm = ({params}) => {
                       <option value="electronics">Electronics</option>
                       <option value="other">other</option>
                   </select>
-                  <input type="text" className="categoryText" placeholder="add custom category">
+            <input type="text" className="categoryText" placeholder="add custom category">
+            </input>
+<br/>
+<br/>
 
-                  </input>
+            <button onClick={submitNewItem} >Add new item</button>
+
+
+
+            <button type="unique" id="bleep" onClick={(e) => {
+              e.preventDefault()
+              console.log('clicked on it', props, dispatch, submitNewItem(e))
+            }
+
+            }>bleeper</button>
+
+
+            <div onClick={submitNewItem}>Div to be a button to send form</div>
+
           </div>
 
 

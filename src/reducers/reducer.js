@@ -3,7 +3,7 @@
 import { combineReducers } from 'redux'
 import {FETCH_ITEMS_SUCCESS} from '../actions/actions.js'
 
-import { EDIT_ITEM, RECIEVED_ALL_ITEMS } from '../actions/item_actions.js'
+import { EDIT_ITEM, RECIEVED_ALL_ITEMS, ADD_NEW_USER_ITEM } from '../actions/item_actions.js'
 
 function User(state={
   items:[],
@@ -25,6 +25,11 @@ function User(state={
 
       state.items[itemIndex] = action.item;
 
+      return Object.assign({}, state)
+
+    }
+    case ADD_NEW_USER_ITEM: {
+      state.items.push(action.item)
       return Object.assign({}, state)
 
     }

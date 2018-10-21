@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import AddItemForm from '../components/add_item_form.js';
+import AddExistingItemList from '../components/add_existing_item_list.js'
+
+import {addItem} from '../actions/item_actions.js'
+
 
 class AddItem extends Component {
+  addNewItem(newItem) {
 
+    this.props.dispatch(addItem(newItem))
+  }
   nonUserItems() {
     let dbItems = this.props.DB.items;
 
@@ -20,21 +27,21 @@ class AddItem extends Component {
       possibleItems.push(dbitem)
     }
 
-
-
-
     }
     return possibleItems;
   }
 
   render() {
     let newItems = this.nonUserItems();
-    console.log('this in AddItem', newItems)
+
+    console.log('newItems in AddItem', newItems);
     return (
       <div>
-      <div>Add an existing item</div>
-
       <AddItemForm/>
+
+      <div>Add an existing item</div>
+      <AddExistingItemList possible={newItems} />
+      <AddItemForm addnewitem={this.addNewItem} dispatch={this.props.dispatch} />
       </div>
     )
   }

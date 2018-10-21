@@ -13,6 +13,8 @@ import AddItem from './containers/add_item.js'
 
 import HeaderLinks from './client_routing/headerlinks.js'
 
+import AddExistingItem from './containers/add_existing_item.js'
+
 
 class App extends Component {
   render() {
@@ -30,6 +32,8 @@ class App extends Component {
                 <Route path="/" exact component={Home}/>
                 <Route path="/home" component={Home}/>
                 <Route path="/newitem" component={AddItem}/>
+                <Route path="/add_existing_item/:idnum" component={AddExistingItem}/>
+
                 <Route component={NoMatch}/>
               </Switch>
       </div>

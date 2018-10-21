@@ -1,4 +1,5 @@
 // actions relating to itemList
+let urlStart = "http://localhost:8080/"
 
 
 export const EDIT_ITEM = "EDIT_ITEM";
@@ -9,7 +10,7 @@ export const editItem = (itemDetails) => (dispatch, getState) => {
   let stateInfo = getState()
   console.log('username', stateInfo.User)
   let postData = { user: stateInfo.User.name, item:itemDetails, collection:'all'};
-  console.log('postData,', postData)
+
   fetch(editItemUrl, {
     cache: "reload",
     body: JSON.stringify(postData),
@@ -17,9 +18,9 @@ export const editItem = (itemDetails) => (dispatch, getState) => {
     referrer: "no-referrer", // no-referrer, *client
     method: 'POST',
     headers: {
-      'content-type': 'application/json',
-      'accept': '*/*'
-    }
+    'content-type': 'application/json',
+    'accept': '*/*'
+    },
     })
     .then(res => res.json())
     .then(json => {
@@ -44,12 +45,36 @@ function editItemSuccess(itemDetails) {
 
 export const ADD_ITEM = "ADD_ITEM";
 
-export const addItem = function(newItem) {
-  let addItemUrl = "http://localhost:8080/items/add'"
+export const addItem = (newItem) => (dispatch, getState) => {
 
-  return {
-    type:ADD_ITEM
+  let addItemUrl = 'http://localhost:8080/items/add'
+
+  let sendData = {
+    item: newItem,
+    userName: getState().User.name,
+    className:'all'
   }
+
+  console.log('our sendData for new item', sendData)
+
+  fetch(addItemUrl, {
+    method: 'POST',
+    body: JSON.stringify(sendData),
+
+        headers: {
+        'content-type': 'application/json',
+        'accept': '*/*'
+        }
+  })
+  .then(res => {
+    return res.json()
+  }
+  )
+  .then(json => {
+    console.log('trying to get some json back')
+    dispatch(addNewUserItemSuccess(newItem))
+
+  })
 }
 
 export const getDBItemsAndBags = () => (dispatch, getState) => {
@@ -64,9 +89,8 @@ export const getDBItemsAndBags = () => (dispatch, getState) => {
     cache: 'no-cache',
 
     headers: {
-    'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-    'Content-Type': 'application/json;',
-
+    'content-type': 'application/json',
+    'accept': '*/*'
     },
     })
     .then(res =>  res.json())
@@ -80,7 +104,6 @@ export const getDBItemsAndBags = () => (dispatch, getState) => {
       .catch(function(error) {
         console.log('There has been a problem with your fetch operation getting the all items which needs to be handeled better: ' + error.message);
       })
-  dispatch(recievedAllItems)
 }
 
 export const RECIEVED_ALL_ITEMS = "RECIEVED_ALL_ITEMS"
@@ -92,5 +115,55 @@ function recievedAllItems(json) {
     type: RECIEVED_ALL_ITEMS,
     items: json.items,
     collectionTypes: json.collectionTypes
+  }
+}
+
+export const ADD_NEW_USER_ITEM = "ADD_NEW_USER_ITEM";
+
+export const addNewUserItem = (newUserItem) => (dispatch, getState) => {
+
+  let urlend = urlStart + "existingitem"
+
+  let sendjson = {item:newUserItem, user: getState().User}
+
+  fetch(urlend, {
+    cache: "reload",
+    body: JSON.stringify(sendjson),
+    mode: "cors", // no-corss cors, *same-origin
+    referrer: "no-referrer", // no-referrer, *client
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': '*/*'
+    }
+  })
+   .then(res =>  res.json())
+      .then(json => {
+        console.log('message bag from adding an item')
+        dispatch(addNewUserItemSuccess(newUserItem))
+      })
+
+    .catch((err) => {
+      dispatch(addNewUserItemFail)
+      console.log('there was an error adding the item', err)
+    })
+
+
+}
+
+export const ADD_NEW_USER_ITEM_FAIL = "ADD_NEW_USER_ITEM_FAIL"
+
+
+function addNewUserItemFail() {
+
+  return {
+    type:ADD_NEW_USER_ITEM_FAIL
+  }
+}
+function addNewUserItemSuccess(userItem) {
+
+  return {
+    type:ADD_NEW_USER_ITEM,
+    item:userItem
   }
 }
