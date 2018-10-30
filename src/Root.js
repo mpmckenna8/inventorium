@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 
 import App from './App.js'
-import './index.css';
 
 
 const Root = ({ store }) => (

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link } from 'react-router-dom'
 
 import {editItem} from "../actions/item_actions.js"
 
@@ -31,7 +32,9 @@ const ItemListView = (params) => {
         return (
           <div className="itemListDiv" key={itemObj.name + i} >
             <div className="itemListName">
-              {itemObj.name}
+              <Link to={"/item/" + itemObj.p_id}>
+                {itemObj.name}
+              </Link>
             </div>
             <div className="itemListQuantity">
               <button className="itemQuantityDecrementor" onClick={(d) => {

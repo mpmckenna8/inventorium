@@ -2,8 +2,7 @@ import React from 'react'
 
 import {addItem} from '../actions/item_actions.js'
 
-const AddItemForm = (props, params) => {
-  console.log('params = ',props, params)
+const AddItemForm = (props) => {
   let dispatch = props.dispatch;
 
   console.log('dispatch = ', dispatch)
@@ -13,10 +12,10 @@ const AddItemForm = (props, params) => {
   let weight = 0;
   let category = ""
   let toggleCategoryTextInput = function(changedCategory) {
-  //  console.log('need to change category', changedCategory, params)
 
     category = changedCategory;
   }
+
   let addNewItem = props.addnewitem;
   let submitNewItem = (e, dispatcher) => {
     e.preventDefault()
@@ -32,7 +31,6 @@ const AddItemForm = (props, params) => {
     if(this.dispatch) {
 
       this.dispatch(addItem(newItem))
-      console.log('newItem to add', newItem, params)
 
     }
     else {

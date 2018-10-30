@@ -21,7 +21,9 @@ class HeaderLinks extends Component {
 
         </div>
         <div className="headLink" >
-          <Link to="/newbag">New Bag</Link>
+          <Link to="/new_collection">
+          New Collection
+          </Link>
         </div>
 
 

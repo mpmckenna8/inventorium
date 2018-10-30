@@ -10,10 +10,9 @@ class Home extends Component {
 
   render() {
     return (
-
       <div>
         <h2>All items</h2>
-        <ItemList />
+        <ItemList current_collection="all" />
       </div>
 
     )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 import AddItemForm from '../components/add_item_form.js';
 import AddExistingItemList from '../components/add_existing_item_list.js'
@@ -20,13 +21,13 @@ class AddItem extends Component {
     let possibleItems = [];
 
     for(let dbitem of dbItems ) {
-      if( userItems.every((uitem) => {
-        return uitem.p_id !== dbitem.p_id
-      })
-    ) {
+      if(
+        userItems.every((uitem) => {
+          return uitem.p_id !== dbitem.p_id
+        })
+      ) {
       possibleItems.push(dbitem)
     }
-
     }
     return possibleItems;
   }
@@ -41,7 +42,14 @@ class AddItem extends Component {
 
       <div>Add an existing item</div>
       <AddExistingItemList possible={newItems} />
-      <AddItemForm addnewitem={this.addNewItem} dispatch={this.props.dispatch} />
+      <AddItemForm
+        addnewitem={this.addNewItem} 
+        dispatch={this.props.dispatch} />
+      {
+        (this.props.User.returnHome) ?
+          <Redirect to="/" /> :
+          (<span></span>)
+      }
       </div>
     )
   }

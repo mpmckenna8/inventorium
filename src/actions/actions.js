@@ -80,3 +80,65 @@ const fetchItemsFailure = () => {
     type:FETCH_ITEMS_FAILURE
   }
 }
+
+export const SET_CURRENT_COLLECTION = "SET_CURRENT_COLLECTION"
+
+export const setCurrentCollection = (onCollection) => {
+
+  return {
+    type:SET_CURRENT_COLLECTION,
+    onCollection: onCollection
+  }
+}
+
+export const addItemToCollection = (item) => (dispatch, getState) => {
+  let currentState = getState()
+
+  let sendjson = {item: item, userName:currentState.User.name, itemClass: currentState.User.currentCollection}
+
+  console.log('json being sent to add item to collection', sendjson)
+
+
+  let addItemToCollectionURL = 'http://localhost:8080/items/addtobag'
+  return fetch(addItemToCollectionURL, {
+    cache: "reload",
+    mode: "cors", // no-corss cors, *same-origin
+    referrer: "no-referrer", // no-referrer, *client
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': '*/*'
+    },
+    body: JSON.stringify(sendjson)
+  })
+  .then(res => res.json())
+  .then(json => {
+    return dispatch(addItemToCollectionSuccess(sendjson, json))
+  })
+  .catch( err => {
+    console.log('there was an err adding item to collection', err)
+    return dispatch(addItemToCollectionFailure())
+  })
+
+}
+
+export const ADD_ITEM_TO_COLLECTION_SUCCESS = 'ADD_ITEM_TO_COLLECTION_SUCCESS'
+
+const addItemToCollectionSuccess = (sendjson) => {
+
+  return {
+    type: ADD_ITEM_TO_COLLECTION_SUCCESS,
+    json:sendjson
+  }
+}
+
+
+const ADD_ITEM_TO_COLLECTION_FAILURE = 'ADD_ITEM_TO_COLLECTION_FAILURE';
+
+
+const addItemToCollectionFailure = () => {
+  return {
+    type:ADD_ITEM_TO_COLLECTION_FAILURE,
+    msg:'something messed up'
+  }
+}

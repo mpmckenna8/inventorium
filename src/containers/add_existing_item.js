@@ -23,6 +23,9 @@ render() {
   return (
     <div>
       <AddExistingItemView dispatch={this.props.dispatch} itemToAdd={itemToAdd}/>
+      {
+        ( this.props.User.returnHome ? "" : "" )
+      }
     </div>
   )
 }

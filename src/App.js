@@ -14,8 +14,13 @@ import AddItem from './containers/add_item.js'
 import HeaderLinks from './client_routing/headerlinks.js'
 
 import AddExistingItem from './containers/add_existing_item.js'
-
-
+import Collections from './containers/collections.js'
+import UserCollection from './containers/user_collection.js'
+import Item from "./containers/item.js"
+import NewCollection from "./containers/newcollection.js"
+import NewUserCollection from "./containers/new_user_collection.js"
+import NewCollectionType from "./containers/new_collection_type.js"
+import EditItem from "./containers/edit_item.js"
 class App extends Component {
   render() {
     return (
@@ -31,9 +36,18 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/home" component={Home}/>
+                <Route path="/new_collection" component={NewCollection}/>
+
                 <Route path="/newitem" component={AddItem}/>
                 <Route path="/add_existing_item/:idnum" component={AddExistingItem}/>
+                <Route path="/collections" component={Collections}/>
 
+                <Route path="/usercollection/:idnum" component={UserCollection}/>
+                <Route path="/new_user_collection/:idnum" component={NewUserCollection}/>
+                <Route path="/item/:idnum" component={Item}/>
+                <Route path="/edit_item/:idnum" component={EditItem}/>
+
+                <Route path="/new_collection_type" component={NewCollectionType}/>
                 <Route component={NoMatch}/>
               </Switch>
       </div>
