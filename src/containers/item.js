@@ -17,16 +17,27 @@ getItemInfo() {
 }
 
 getItemCollections(item) {
+  let itemColls = [];
 
+  let userColls = this.props.User.collections;
 
+  for( let collection of userColls ) {
+    let collectionItem = collection.items.find( (collItem) => collItem.p_id === item.p_id )
+    if( collectionItem ) {
+      let itemsCollectionObject = {collection: collection, quantity: collectionItem.quantity}
+      itemColls.push(itemsCollectionObject)
+    }
+  }
+  //console.log('itemcolls', itemColls)
+  return itemColls;
 }
 render() {
   let itemInfo = this.getItemInfo();
-  let itemCollections = this.getItemCollections();
+  let itemCollections = this.getItemCollections(itemInfo);
   console.log(itemInfo)
   return (
     <div>
-      <ItemView item={itemInfo}/>
+      <ItemView item={itemInfo} item_collections={itemCollections}/>
     </div>
   )
 }

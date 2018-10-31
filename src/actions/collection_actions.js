@@ -50,6 +50,8 @@ const addUserCollectionFailure = () => {
   }
 }
 
+
+
 export const addCollectionType = (collectionDetails) => (dispatch, getState) => {
 
   let addCollectionTypeURL = "http://localhost:8080/collections/add";
@@ -65,7 +67,7 @@ export const addCollectionType = (collectionDetails) => (dispatch, getState) => 
     error => console.log('there was an error in the add itemclass call thing to db, ', error)
   ).then(
     json => {
-      return dispatch(collectionAddedToDB(json.data))
+      return dispatch(collectionAddedToDB(json.data.collectionInfo))
     }
   )
 }
@@ -76,5 +78,47 @@ const collectionAddedToDB = (newCollection) => {
   return {
     type:COLLECTION_ADD_SUCCESS,
     newCollection: newCollection
+  }
+}
+
+export const emptyCollection = (  collection, options = {mode:"setToZero"} ) =>
+  (dispatch, getState) => {
+    let emptyData = {uc_id:collection.up_id, options:options.mode}
+    let emptyURL = "http://localhost:8080/emptycollection/" + emptyData.uc_id
+    return fetch(emptyURL,
+      {
+        method: "POST",
+        headers: {
+          'content-type': 'application/json',
+          'accept': '*/*'
+        }
+          ,
+        body: JSON.stringify(emptyData)
+    }
+    )
+    .then(res => {
+  //  console.log('res back,', res)
+        return res.json();
+      })
+      .then(json => dispatch(emptyCollectionSuccess(options.mode, collection.uc_id, json) ))
+      .catch(err => dispatch(emptyCollectionFail(err)) )
+
+
+}
+
+export const EMPTY_COLLECTION_SUCCESS = "EMPTY_COLLECTION_SUCCESS";
+
+const emptyCollectionSuccess = (collection) => {
+
+  return {
+    type:"EMPTY_COLLECTION_SUCCESS",
+    collection: collection
+  }
+}
+
+const emptyCollectionFail = (collection) => {
+  return {
+    type:"EMPTY_COLLECTION_FAIL",
+    collection: collection
   }
 }

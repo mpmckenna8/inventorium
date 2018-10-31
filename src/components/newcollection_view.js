@@ -12,6 +12,7 @@ const NewCollectionView = (props) => {
 
   return (
     <div>
+
       {
         collection_types.map( (coll_type, i) => {
 

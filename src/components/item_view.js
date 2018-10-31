@@ -7,11 +7,13 @@ import {Link} from 'react-router-dom'
 const ItemView = (params) => {
 
   let currentItem = params.item;
+  let itemCollections = params.item_collections;
   if(!currentItem){
     currentItem = {
       name:"",
 
     }
+    itemCollections = []
   }
   return (
     <div>
@@ -48,6 +50,22 @@ const ItemView = (params) => {
             <p>{currentItem.weight}</p>
           </span>
         </div>
+        <div className="itemCollections itemDeets">
+
+          {
+            itemCollections.map( (collectionObject, i ) => {
+              return (
+                <div key={"itemCollection" + i}>
+                <Link to={'/usercollection/' + collectionObject.collection.up_id } >
+                  {collectionObject.collection.name} <span> quantity: {collectionObject.quantity}</span>
+                </Link>
+                </div>
+              )
+            })
+          }
+        </div>
+
+
     </div>
   )
 }
