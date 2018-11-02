@@ -5,7 +5,7 @@ import {FETCH_ITEMS_SUCCESS, SET_CURRENT_COLLECTION, ADD_ITEM_TO_COLLECTION_SUCC
 
 import { EDIT_ITEM, RECIEVED_ALL_ITEMS, ADD_NEW_USER_ITEM } from '../actions/item_actions.js'
 
-import {ADD_USER_COLLECTION_SUCCESS, COLLECTION_ADD_SUCCESS} from '../actions/collection_actions.js'
+import {ADD_USER_COLLECTION_SUCCESS, COLLECTION_ADD_SUCCESS, EMPTY_COLLECTION_SUCCESS} from '../actions/collection_actions.js'
 
 function User(state={
   items:[],
@@ -58,9 +58,25 @@ function User(state={
     }
 
     case COLLECTION_ADD_SUCCESS: {
-      state.collections.push(action.newCollection)
+      state.collections.push(action.newCollection);
+
       return Object.assign({}, state)
     }
+    case EMPTY_COLLECTION_SUCCESS: {
+      let onCollection = state.collections.find( d => action.up_id === d.up_id)
+      if( action.mode === "setToZero") {
+
+        for( let item of onCollection.items) {
+          item.quantity = 0;
+        }
+      }
+      if( action.mode === 'emptyArray' ) {
+
+        onCollection.items = [];
+      }
+      return Object.assign({}, state)
+    }
+
 
     default:
       return state;

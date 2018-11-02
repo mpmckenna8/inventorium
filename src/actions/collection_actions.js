@@ -100,7 +100,9 @@ export const emptyCollection = (  collection, options = {mode:"setToZero"} ) =>
   //  console.log('res back,', res)
         return res.json();
       })
-      .then(json => dispatch(emptyCollectionSuccess(options.mode, collection.uc_id, json) ))
+      .then(json => {
+        dispatch(emptyCollectionSuccess(options.mode, collection.up_id, json) )
+      })
       .catch(err => dispatch(emptyCollectionFail(err)) )
 
 
@@ -108,11 +110,13 @@ export const emptyCollection = (  collection, options = {mode:"setToZero"} ) =>
 
 export const EMPTY_COLLECTION_SUCCESS = "EMPTY_COLLECTION_SUCCESS";
 
-const emptyCollectionSuccess = (collection) => {
+const emptyCollectionSuccess = ( mode, up_id, json) => {
 
   return {
     type:"EMPTY_COLLECTION_SUCCESS",
-    collection: collection
+    json: json,
+    mode: mode,
+    up_id: up_id
   }
 }
 

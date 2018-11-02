@@ -35,7 +35,22 @@ function setQuantitiesToZero() {
 
   console.log('need to set all quantities to zero for', collection)
   props.dispatch(emptyCollection(collection, {mode:'setToZero'}))
+  closeEmptyCollecitonModal();
 }
+
+function closeEmptyCollecitonModal() {
+
+  let emptyDialogue = document.getElementById('empty_Collection_Dialog')
+  emptyDialogue.close();
+}
+
+function emptyItems() {
+  props.dispatch( emptyCollection( collection, {mode:"emptyArray"} ) );
+  closeEmptyCollecitonModal();
+
+}
+
+
   return (
     <div>
       <h3>{collection.name}</h3>
@@ -49,15 +64,11 @@ function setQuantitiesToZero() {
           <button onClick={setQuantitiesToZero}>
             Set Quantities to zero
           </button>
-          <button onClick={
-            ''
-            //this.emptyItems.bind(this)
-          }>
+          <button onClick={emptyItems}>
             Empty items
           </button>
           <button onClick={
-            ''
-            //this.closeDialogue
+            closeEmptyCollecitonModal
           }>
             Cancel
           </button>
