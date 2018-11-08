@@ -5,18 +5,12 @@ import {addItem} from '../actions/item_actions.js'
 const AddItemForm = (props) => {
   let dispatch = props.dispatch;
 
-  console.log('dispatch = ', dispatch)
+//  console.log('dispatch = ', dispatch)
   let input;
   let description = ''
   let count = 0;
   let weight = 0;
-  let category = ""
-  let toggleCategoryTextInput = function(changedCategory) {
 
-    category = changedCategory;
-  }
-
-  let addNewItem = props.addnewitem;
   let submitNewItem = (e, dispatcher) => {
     e.preventDefault()
 
@@ -28,6 +22,8 @@ const AddItemForm = (props) => {
               weight: weight.value,
               category: document.getElementById('catSelect').value
             }
+
+    // h
     if(this.dispatch) {
 
       this.dispatch(addItem(newItem))
@@ -107,10 +103,7 @@ const AddItemForm = (props) => {
       <br />
       <div className="addItemDiv">
         <label className="addLabel">Category:</label>
-          <select name="select" defaultValue="other" className="addSelect" id="catSelect" onChange={(e) => {
-                // console.log('para is', e.target.value);
-                  toggleCategoryTextInput(e.target.value)
-              }}>
+          <select name="select" defaultValue="other" className="addSelect" id="catSelect">
                       <option value="clothing">Clothing</option>
                       <option value="comestible" >Comestibles</option>
                       <option value="tool">Tools</option>

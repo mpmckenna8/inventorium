@@ -1,18 +1,14 @@
 import React from 'react';
 
-import {Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router-dom'
 
 import ItemListView from './item_list_view.js'
 //import ItemNotInCollection from "../containers/item_not_in_collection.js"
 import {addItemToCollection} from '../actions/actions.js'
-import { emptyCollection } from '../actions/collection_actions.js'
+import { emptyCollection, deleteUserCollection } from '../actions/collection_actions.js'
 
 function hereaddItemToCollection(itemToAdd, dispatch) {
-    let newItem = {
-                    name: itemToAdd.name,
-                    quantity:1,
 
-                    }
     itemToAdd.quantity = 1;
     console.log('itemtoadd', itemToAdd)
     dispatch(addItemToCollection(itemToAdd))
@@ -59,6 +55,14 @@ function emptyItems() {
         <button id="emptyCollectionButton" onClick={(e) => {
           showEmptyCollection();
         }}>Empty Collection</button>
+
+        <button id="deleteCollectionButton"
+          onClick={(d) => {
+            props.dispatch(deleteUserCollection(collection.up_id))
+          }}
+        >
+        Delete Collection
+        </button>
         <dialog id="empty_Collection_Dialog">
           <p>Set item quantities to zero or empty all items?</p>
           <button onClick={setQuantitiesToZero}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link } from 'react-router-dom'
 
-import {editItem} from "../actions/item_actions.js"
+import {editItemQuant} from "../actions/item_actions.js"
 
 const ItemListView = (params) => {
 
@@ -14,13 +14,13 @@ const ItemListView = (params) => {
     console.log('need to increment', itemEdit)
     let incrementedItem = itemEdit;
     incrementedItem.quantity = itemEdit.quantity + 1;
-    params.dispatch(editItem(incrementedItem))
+    params.dispatch(editItemQuant(incrementedItem))
   }
 
   function decrementItemQuantity(itemEdit) {
     let decrementedItem = itemEdit;
     decrementedItem.quantity = itemEdit.quantity - 1;
-    params.dispatch(editItem(decrementedItem))
+    params.dispatch(editItemQuant(decrementedItem))
   }
 
 

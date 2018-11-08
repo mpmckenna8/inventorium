@@ -13,7 +13,7 @@ class ItemList extends Component {
       this.props.dispatch(setCurrentCollection(onCollection))
   }
   componentDidMount() {
-    this.setCurrentCollection('all');
+    this.setCurrentCollection(this.props.User.onCollection);
   }
     render() {
 //    console.log('this in itemList = ', this)

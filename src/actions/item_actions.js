@@ -4,18 +4,18 @@ let urlStart = "http://localhost:8080/"
 
 export const EDIT_ITEM = "EDIT_ITEM";
 
-export const editItem = (itemDetails) => (dispatch, getState) => {
+export const editItemQuant = (itemDetails) => (dispatch, getState) => {
 
-  let editItemUrl = "http://localhost:8080/items/editquant";
+  let editItemQuantUrl = "http://localhost:8080/items/editquant";
   let stateInfo = getState()
   console.log('username', stateInfo.User)
   let postData = {
-      user: stateInfo.User.name, 
+      user: stateInfo.User.name,
       item:itemDetails,
       collection:stateInfo.User.currentCollection
   };
 
-  fetch(editItemUrl, {
+  fetch(editItemQuantUrl, {
     cache: "reload",
     body: JSON.stringify(postData),
     mode: "cors", // no-cors, cors, *same-origin
@@ -32,8 +32,6 @@ export const editItem = (itemDetails) => (dispatch, getState) => {
 
     })
     .catch(error => console.error('Error editing the item and sending to db:', error));
-
-
 
 }
 
@@ -170,4 +168,33 @@ function addNewUserItemSuccess(userItem) {
     type:ADD_NEW_USER_ITEM,
     item:userItem
   }
+}
+
+export const editItem = (itemDetails) => (dispatch, getState) => {
+
+  let editItemURL = 'http://localhost:8080/items/edit';
+
+  fetch(editItemURL, {
+    cache: "reload",
+    body: JSON.stringify(itemDetails),
+    mode: "cors", // no-corss cors, *same-origin
+    referrer: "no-referrer", // no-referrer, *client
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': '*/*'
+    }
+  })
+   .then(res =>  res.json())
+   .then(json => {
+
+     console.log('response from edititem', json)
+     dispatch(editItemSuccess(itemDetails))
+
+
+   })
+   .catch(err => {
+     console.log('there was an err editing an item', err)
+   })
+
 }

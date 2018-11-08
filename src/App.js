@@ -30,7 +30,6 @@ class App extends Component {
 
         <header className="App-header">
           <HeaderLinks />
-          <h1 className="App-title">Inventorium</h1>
         </header>
 
               <Switch>

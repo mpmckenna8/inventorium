@@ -46,7 +46,7 @@ class EditItem extends Component {
     let categories = ['clothing', 'comestible', 'tool', 'potion', 'electronics' ]
 
     let onCategory = categories.find( (d) => {
-      d === currentItem.category
+      return d === currentItem.category
     })
 
 
@@ -67,10 +67,13 @@ class EditItem extends Component {
 
               <br/>
               <label>Category:</label>
-              <select name="select" defaultValue="other" className="addSelect" id="catSelect" onChange={(e) => {
+              <select
+                name="select"
+                className="addSelect"    
+                id="catSelect" onChange={(e) => {
                      console.log('para is', e.target.value);
                   }}
-              defaultValue={ (onCategory) ? onCategory : 'other'}
+                defaultValue={ (onCategory) ? onCategory : 'other'}
                   >
                           <option value="clothing">Clothing</option>
                           <option value="comestible" >Comestibles</option>

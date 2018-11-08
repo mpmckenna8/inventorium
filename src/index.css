@@ -25,3 +25,11 @@ div {
 .headLink a {
   color:limegreen;
 }
+
+
+.headerLinkDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}

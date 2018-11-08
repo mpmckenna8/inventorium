@@ -126,3 +126,55 @@ const emptyCollectionFail = (collection) => {
     collection: collection
   }
 }
+
+
+
+export const deleteUserCollection = (up_id) => (dispatch, getState) => {
+
+  let deleteUserCollectionURL = 'http://localhost:8080/collections/deleteuserbag'
+
+  let del_bag_data = {
+    bag_id: up_id,
+    user_id: getState().User.u_id
+  }
+
+  return fetch(deleteUserCollectionURL, {
+    body: JSON.stringify(del_bag_data),
+      method: "POST",
+      headers: {
+        'content-type': 'application/json',
+        'accept': '*/*'
+      }
+  })
+  .then(res => {
+//  console.log('res back,', res)
+      return res.json();
+    })
+    .then(json => {
+      dispatch(deletUserCollecitonSuccess(up_id, json) )
+    })
+    .catch(err => dispatch(deleteUserCollectionFail(err)) )
+
+}
+
+
+export const DELETE_USER_COLLECTION_FAIL = "DELETE_USER_COLLECTION_FAIL";
+
+function deleteUserCollectionFail(err) {
+
+  return {
+    type:"DELETE_USER_COLLECTION_FAIL",
+    err: err
+  }
+}
+
+export const DELETE_USER_COLLECTION_SUCCESS = "DELETE_USER_COLLECTION_SUCCESS";
+
+function deletUserCollecitonSuccess(up_id, json) {
+
+  return {
+    type: DELETE_USER_COLLECTION_SUCCESS,
+    json: json,
+    up_id: up_id
+  }
+}

@@ -8,6 +8,7 @@ import { EDIT_ITEM, RECIEVED_ALL_ITEMS, ADD_NEW_USER_ITEM } from '../actions/ite
 import {ADD_USER_COLLECTION_SUCCESS, COLLECTION_ADD_SUCCESS, EMPTY_COLLECTION_SUCCESS} from '../actions/collection_actions.js'
 
 function User(state={
+  u_id: 1,
   items:[],
   collections: [],
   name:"test",
@@ -76,8 +77,6 @@ function User(state={
       }
       return Object.assign({}, state)
     }
-
-
     default:
       return state;
   }

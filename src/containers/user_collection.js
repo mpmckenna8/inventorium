@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import UserCollectionView from "../components/user_collection_view.js"
 import {setCurrentCollection} from '../actions/actions.js';
 
+
 class UserCollection extends Component {
   collectionDetails() {
     let collection_id = parseInt(this.props.match.params.idnum, 10);
@@ -57,7 +58,7 @@ class UserCollection extends Component {
           remaining_items={nonCollectionItems}
           dispatch={this.props.dispatch}
         />
-        
+
       </div>
     )
     }
