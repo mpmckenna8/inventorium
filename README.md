@@ -1,3 +1,18 @@
+The basic structure of things in src/
+
+index.js
+  starts things off and has ReactDOM render dispatching a couple of actions.
+/containers/root.js
+  Pretty much establishes the provider and store (redux stuff for actions and state and stuff) and renders
+/App.js
+  Renders the HeaderLinks and contains all the client side Routing
+/client_routing/headerlinks.js
+   Contains the links to different parts of the page. Always renders
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

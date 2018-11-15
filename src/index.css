@@ -33,3 +33,13 @@ div {
   justify-content: space-around;
 
 }
+
+
+.invisibleFilters {
+  display: none;
+}
+
+.visibleFilters {
+  display: flex;
+  flex-direction: row;
+}

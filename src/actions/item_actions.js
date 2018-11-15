@@ -9,11 +9,14 @@ export const editItemQuant = (itemDetails) => (dispatch, getState) => {
   let editItemQuantUrl = "http://localhost:8080/items/editquant";
   let stateInfo = getState()
   console.log('username', stateInfo.User)
+
   let postData = {
       user: stateInfo.User.name,
       item:itemDetails,
       collection:stateInfo.User.currentCollection
-  };
+    };
+
+  console.log('needing to post ,', postData)
 
   fetch(editItemQuantUrl, {
     cache: "reload",

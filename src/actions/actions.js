@@ -142,3 +142,39 @@ const addItemToCollectionFailure = () => {
     msg:'something messed up'
   }
 }
+
+
+
+
+export const toggleFilterDisplay = () => {
+
+  return {
+    type:"TOGGLE_FILTER_DISPLAY"
+  }
+}
+
+export const toggleCategoryFilter = (filterCatObject) => {
+
+  return {
+    type: "FILTER_CATEGORY",
+    filterObj: filterCatObject
+  }
+}
+
+export const FILTER_COLLECTION = "FILTER_COLLECTION";
+export const toggleCollectionFilter = (filterCollectionObj) => {
+
+  return {
+    type: "FILTER_COLLECTION",
+    filterObj: filterCollectionObj
+  }
+}
+
+export const SET_RETURN_HOME = "SET_RETURN_HOME"
+
+export const setReturnHome = (returnValue) => {
+  return {
+    type:"SET_RETURN_HOME",
+    value: returnValue
+  }
+}

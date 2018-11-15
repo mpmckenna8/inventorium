@@ -1,13 +1,20 @@
 import React from 'react'
-import {Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import {editItemQuant} from "../actions/item_actions.js"
+import {setReturnHome} from "../actions/actions.js"
+
 
 const ItemListView = (params) => {
-
+  //console.log('this', this)
   let items = [];
   if( params.items ) {
      items = params.items;
+  }
+
+  if( window.location.pathname === "/home") {
+    //console.log('need to set return home to false.')
+    //params.dispatch(setReturnHome(false))
   }
 
   function incrementItemQuanity(itemEdit) {
@@ -22,6 +29,8 @@ const ItemListView = (params) => {
     decrementedItem.quantity = itemEdit.quantity - 1;
     params.dispatch(editItemQuant(decrementedItem))
   }
+
+
 
 
   return (

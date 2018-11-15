@@ -1,7 +1,7 @@
 // root reducer store to go here
 
 import { combineReducers } from 'redux'
-import {FETCH_ITEMS_SUCCESS, SET_CURRENT_COLLECTION, ADD_ITEM_TO_COLLECTION_SUCCESS} from '../actions/actions.js'
+import {FETCH_ITEMS_SUCCESS, SET_CURRENT_COLLECTION, ADD_ITEM_TO_COLLECTION_SUCCESS, SET_RETURN_HOME, FILTER_COLLECTION} from '../actions/actions.js'
 
 import { EDIT_ITEM, RECIEVED_ALL_ITEMS, ADD_NEW_USER_ITEM } from '../actions/item_actions.js'
 
@@ -19,9 +19,14 @@ function User(state={
   redirectTo:""
 }, action) {
   switch (action.type) {
+    case SET_RETURN_HOME: {
+      state.returnHome = action.value;
+      return Object.assign({}, state);
+    }
     case FETCH_ITEMS_SUCCESS: {
       state.items = action.items;
       state.collections = action.collections;
+
       return Object.assign({}, state)
     }
     case EDIT_ITEM: {
@@ -36,6 +41,8 @@ function User(state={
       return Object.assign({}, state)
     }
     case SET_CURRENT_COLLECTION: {
+
+      console.log('setting collection,', action.onCollection, action)
       state.currentCollection = action.onCollection;
       return Object.assign({}, state)
 
@@ -100,8 +107,94 @@ function DB(state={
   }
 }
 
+
+function Filters(state={
+  showZeroQuantity: true,
+  showInStock: true,
+  collections:[],
+  selected_collections: [],
+  visibleCategories:[],
+  categories:[],
+  visible: false,
+  showCollections: true
+},
+action ) {
+switch (action.type) {
+  case FETCH_ITEMS_SUCCESS: {
+    let collectionsArray = ['all']
+    console.log('collections for filters', action.collections)
+    collectionsArray = collectionsArray.concat(
+      action.collections.map( (d) => {
+      return d.name
+    }) )
+
+    state.selected_collections = collectionsArray;
+    state.collections = collectionsArray;
+    return Object.assign({}, state)
+
+  }
+  case FILTER_COLLECTION: {
+
+    if(action.filterObj.status) {
+      state.selected_collections.push( action.filterObj.collection)
+    }
+    else {
+      state.selected_collections = state.selected_collections.filter( (d) => d !== action.filterObj.collection )
+    }
+
+    return Object.assign({}, state)
+  }
+
+  case "FILTER_CATEGORY": {
+
+    let filter_category = action.filterObj.category
+
+    let filter_status = action.filterObj.status;
+
+    console.log(action)
+
+    if( filter_status === false) {
+      state.visibleCategories = state.visibleCategories.filter( (d) => {
+      console.log('filtering', d, filter_category)
+          return d !== filter_category }
+        )
+    }
+    else {
+      state.visibleCategories.push(filter_category)
+    }
+
+
+    return Object.assign({}, state)
+  }
+  case "TOGGLE_FILTER_DISPLAY": {
+
+    state.visible = !state.visible;
+
+    return Object.assign({}, state)
+  }
+  case RECIEVED_ALL_ITEMS: {
+    let categories = [];
+    for( let item of action.items) {
+      if( !categories.includes(item.category) ) {
+        categories.push(item.category)
+      }
+    }
+
+    state.categories = categories;
+    state.visibleCategories = categories;
+    return Object.assign({}, state)
+
+  }
+  default:
+    return state;
+
+  }
+
+}
 const rootReducer = combineReducers({
-  User, DB
+  User,
+  DB,
+  Filters
 })
 
 export default rootReducer;

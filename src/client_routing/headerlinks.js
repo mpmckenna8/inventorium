@@ -25,8 +25,6 @@ class HeaderLinks extends Component {
           New Collection
           </Link>
         </div>
-
-
       </div>
 
     )
