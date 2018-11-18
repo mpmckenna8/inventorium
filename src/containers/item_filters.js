@@ -1,7 +1,7 @@
 //
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {toggleFilterDisplay, toggleCategoryFilter, toggleCollectionFilter} from '../actions/actions.js'
+import {toggleFilterDisplay, toggleCategoryFilter, toggleCollectionFilter, setFilterStocked} from '../actions/actions.js'
 
 
 class ItemFilters extends Component {
@@ -24,6 +24,17 @@ class ItemFilters extends Component {
           collection: collection,
           status: e.target.checked
         }))
+  }
+  filterStocked(e) {
+
+    console.log('need to filter showing stocked stuff');
+    this.props.dispatch( setFilterStocked({type:'stocked', checked: e.target.checked}) )
+  }
+  filterUnstocked(e) {
+    console.log('need to filter unstocked things')
+        this.props.dispatch( setFilterStocked({type:'unstocked', checked: e.target.checked}) )
+
+
   }
   render() {
 
@@ -50,6 +61,27 @@ class ItemFilters extends Component {
         <div
           className={ "itemFilters " + (visibleFilters ? 'visibleFilters' : 'invisibleFilters')}
           >
+
+
+          <div>
+            <h4>Quantities</h4>
+            <label>In Stock
+              <input
+                type="checkbox"
+                defaultChecked='true'
+                value='notZeroed'
+                onChange={e => this.filterStocked(e)} />
+            </label>
+              <br />
+            <label>Out of Stock
+              <input
+                type="checkbox"
+                defaultChecked='true'
+                value='zeroed'
+                onChange={e => this.filterUnstocked(e)} />
+              </label>
+
+            </div>
             <div>
               <h4>Category</h4>
                 {

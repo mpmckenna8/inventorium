@@ -129,7 +129,7 @@ export const addNewUserItem = (newUserItem) => (dispatch, getState) => {
 
   let urlend = urlStart + "existingitem"
 
-  let sendjson = {item:newUserItem, user: getState().User}
+  let sendjson = {item:newUserItem, user: {name: getState().User.name}}
 
   fetch(urlend, {
     cache: "reload",

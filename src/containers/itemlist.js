@@ -29,6 +29,21 @@ class ItemList extends Component {
       return this.props.Filters.visibleCategories.includes( item.category )
     })
 
+    filteredItems = filteredItems.filter( (item) => {
+
+      if( ! this.props.Filters.showPositiveQuantity ) {
+        if( item.quantity > 0 ) {
+          return false
+        }
+      }
+      else if( ! this.props.Filters.showZeroQuantity ) {
+        if( item.quantity < 1 ) {
+          return false
+        }
+      }
+      return true;
+    })
+
     // don't apply collection filters if on a colleciton pages
     if(window.location.pathname.includes('usercollection') ||
      this.props.Filters.selected_collections.includes('all')) {
@@ -52,8 +67,6 @@ class ItemList extends Component {
           }
         }
       }
-
-
 
         return filterStat
       })

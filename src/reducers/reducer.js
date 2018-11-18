@@ -1,7 +1,7 @@
 // root reducer store to go here
 
 import { combineReducers } from 'redux'
-import {FETCH_ITEMS_SUCCESS, SET_CURRENT_COLLECTION, ADD_ITEM_TO_COLLECTION_SUCCESS, SET_RETURN_HOME, FILTER_COLLECTION} from '../actions/actions.js'
+import {FETCH_ITEMS_SUCCESS, SET_CURRENT_COLLECTION, ADD_ITEM_TO_COLLECTION_SUCCESS, SET_RETURN_HOME, FILTER_COLLECTION, SET_STOCK_FILTER} from '../actions/actions.js'
 
 import { EDIT_ITEM, RECIEVED_ALL_ITEMS, ADD_NEW_USER_ITEM } from '../actions/item_actions.js'
 
@@ -110,7 +110,7 @@ function DB(state={
 
 function Filters(state={
   showZeroQuantity: true,
-  showInStock: true,
+  showPositiveQuantity: true,
   collections:[],
   selected_collections: [],
   visibleCategories:[],
@@ -132,6 +132,27 @@ switch (action.type) {
     state.collections = collectionsArray;
     return Object.assign({}, state)
 
+  }
+  case SET_STOCK_FILTER: {
+      if( action.mode === 'stocked') {
+        if( action.checked ) {
+          state.showPositiveQuantity = true;
+        }
+        else {
+          state.showPositiveQuantity = false;
+        }
+      }
+      else {
+        // do unstocked stuff
+        if( action.checked) {
+          state.showZeroQuantity = true;
+        }
+        else {
+          state.showZeroQuantity = false
+        }
+      }
+
+      return Object.assign({}, state)
   }
   case FILTER_COLLECTION: {
 

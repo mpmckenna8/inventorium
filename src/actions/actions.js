@@ -178,3 +178,16 @@ export const setReturnHome = (returnValue) => {
     value: returnValue
   }
 }
+
+
+export const SET_STOCK_FILTER = "SET_STOCK_FILTER";
+
+export const setFilterStocked = ( filterInfo  = { type: "stocked",
+      checked: true} )  => {
+
+        return {
+            type:SET_STOCK_FILTER,
+            mode: filterInfo.type,
+            checked: filterInfo.checked
+        }
+      }
