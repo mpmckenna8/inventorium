@@ -6,7 +6,7 @@ import categorizeItems from "../helpers/categorize_items.js";
 
 import ItemListView from "../components/item_list_view.js"
 
-import {setCurrentCollection} from '../actions/actions.js';
+import {setCurrentCollection, setReturnHome} from '../actions/actions.js';
 
 class ItemList extends Component {
   setCurrentCollection(onCollection) {
@@ -15,7 +15,11 @@ class ItemList extends Component {
   }
   componentDidMount() {
 
-  //  this.setCurrentCollection(this.props.User.onCollection);
+    if( window.location.pathname === "/home") {
+      console.log('need to set return home to false.')
+      this.props.dispatch(setReturnHome(false))
+    }
+    this.setCurrentCollection(this.props.User.onCollection);
 
   }
   applyFilters(items) {
@@ -25,8 +29,8 @@ class ItemList extends Component {
     // apply category filters
 
     filteredItems = items.filter( (item) => {
-      console.log(this.props.Filters.visibleCategories.includes( item.category ))
-      return this.props.Filters.visibleCategories.includes( item.category )
+      console.log(filters.visibleCategories.includes( item.category ))
+      return filters.visibleCategories.includes( item.category )
     })
 
     filteredItems = filteredItems.filter( (item) => {

@@ -12,11 +12,6 @@ const ItemListView = (params) => {
      items = params.items;
   }
 
-  if( window.location.pathname === "/home") {
-    //console.log('need to set return home to false.')
-    //params.dispatch(setReturnHome(false))
-  }
-
   function incrementItemQuanity(itemEdit) {
     console.log('need to increment', itemEdit)
     let incrementedItem = itemEdit;
