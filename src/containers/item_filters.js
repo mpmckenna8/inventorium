@@ -42,7 +42,7 @@ class ItemFilters extends Component {
 
     let categories = this.props.Filters.categories;
     let category_filters = this.props.Filters.visibleCategories
-    let showCollections = this.props.Filters.showCollections;
+    let showCollections = this.props.User.currentCollection === 'all';
     let filterCollections = this.props.Filters.collections;
     let selectedCollections = this.props.Filters.selected_collections;
     let maximize = "+";

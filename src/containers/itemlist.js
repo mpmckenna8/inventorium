@@ -18,8 +18,9 @@ class ItemList extends Component {
     if( window.location.pathname === "/home") {
       console.log('need to set return home to false.')
       this.props.dispatch(setReturnHome(false))
+      this.setCurrentCollection('all');
+
     }
-    this.setCurrentCollection(this.props.User.onCollection);
 
   }
   applyFilters(items) {

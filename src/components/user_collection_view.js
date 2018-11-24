@@ -7,6 +7,9 @@ import ItemListView from './item_list_view.js'
 import {addItemToCollection} from '../actions/actions.js'
 import { emptyCollection, deleteUserCollection } from '../actions/collection_actions.js'
 
+import ItemFilters from '../containers/item_filters.js'
+
+
 function hereaddItemToCollection(itemToAdd, dispatch) {
 
     itemToAdd.quantity = 1;
@@ -50,7 +53,7 @@ function emptyItems() {
   return (
     <div>
       <h3>{collection.name}</h3>
-
+      <ItemFilters />
       <div>
         <button id="emptyCollectionButton" onClick={(e) => {
           showEmptyCollection();
