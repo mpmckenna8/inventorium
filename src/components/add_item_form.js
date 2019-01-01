@@ -4,7 +4,6 @@ import {addItem} from '../actions/item_actions.js'
 
 const AddItemForm = (props) => {
   let dispatch = props.dispatch;
-
 //  console.log('dispatch = ', dispatch)
   let input;
   let description = ''
@@ -116,19 +115,14 @@ const AddItemForm = (props) => {
 <br/>
 <br/>
 
+
             <button onClick={submitNewItem} >Add new item</button>
-
-
-
             <button type="unique" id="bleep" onClick={(e) => {
               e.preventDefault()
               console.log('clicked on it', props, dispatch, submitNewItem(e))
             }
 
             }>bleeper</button>
-
-
-            <div onClick={submitNewItem}>Div to be a button to send form</div>
 
           </div>
 

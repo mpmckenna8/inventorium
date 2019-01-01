@@ -43,7 +43,7 @@ class AddItem extends Component {
       <div>Add an existing item</div>
       <AddExistingItemList possible={newItems} />
       <AddItemForm
-        addnewitem={this.addNewItem} 
+        addnewitem={this.addNewItem}
         dispatch={this.props.dispatch} />
       {
         (this.props.User.returnHome) ?

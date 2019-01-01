@@ -17,6 +17,7 @@ class UserCollection extends Component {
   }
 
   componentDidMount() {
+
     this.setCurrentCollection(this.props.match.params.idnum);
   }
   setCurrentCollection(onCollection) {

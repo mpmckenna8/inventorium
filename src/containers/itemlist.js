@@ -14,14 +14,13 @@ class ItemList extends Component {
       this.props.dispatch(setCurrentCollection(onCollection))
   }
   componentDidMount() {
+    console.log('pathname = ', window.location.pathname)
 
     if( window.location.pathname === "/home") {
       console.log('need to set return home to false.')
       this.props.dispatch(setReturnHome(false))
       this.setCurrentCollection('all');
-
     }
-
   }
   applyFilters(items) {
     console.log('applying filters.', items)
@@ -57,7 +56,6 @@ class ItemList extends Component {
     else {
 
       let collections = this.props.User.collections;
-
 
       filteredItems = filteredItems.filter( (item) => {
 

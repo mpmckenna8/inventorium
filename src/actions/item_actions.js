@@ -77,7 +77,7 @@ export const addItem = (newItem) => (dispatch, getState) => {
   )
   .then(json => {
     console.log('trying to get some json back')
-    dispatch(addNewUserItemSuccess(newItem))
+    dispatch(addNewUserItemSuccess(newItem, json))
 
   })
 }
@@ -165,11 +165,12 @@ function addNewUserItemFail() {
     type:ADD_NEW_USER_ITEM_FAIL
   }
 }
-function addNewUserItemSuccess(userItem) {
+function addNewUserItemSuccess(userItem, json) {
 
   return {
     type:ADD_NEW_USER_ITEM,
-    item:userItem
+    item:userItem,
+    msg: json
   }
 }
 

@@ -36,12 +36,14 @@ function User(state={
       return Object.assign({}, state)
     }
     case ADD_NEW_USER_ITEM: {
-      state.items.push(action.item)
+
+      let newItem = action.item;
+      newItem.p_id = action.msg.data.item_id
+      state.items.push(newItem)
       state.returnHome = true;
       return Object.assign({}, state)
     }
     case SET_CURRENT_COLLECTION: {
-
       console.log('setting collection,', action.onCollection, action)
       state.currentCollection = action.onCollection;
       return Object.assign({}, state)

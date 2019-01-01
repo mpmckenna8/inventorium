@@ -20,15 +20,16 @@ function hereaddItemToCollection(itemToAdd, dispatch) {
 }
 
 const UserCollectionView = (props) => {
+
+
   let collection = props.collection;
 
+  function showEmptyCollection() {
 
-function showEmptyCollection() {
-
-      let emptyDialogue = document.getElementById('empty_Collection_Dialog')
-      emptyDialogue.showModal();
-      console.log('need to empty the collection', collection)
-}
+        let emptyDialogue = document.getElementById('empty_Collection_Dialog')
+        emptyDialogue.showModal();
+        console.log('need to empty the collection', collection)
+  }
 
 function setQuantitiesToZero() {
 
