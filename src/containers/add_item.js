@@ -47,7 +47,7 @@ class AddItem extends Component {
         dispatch={this.props.dispatch} />
       {
         (this.props.User.returnHome) ?
-          <Redirect to="/" /> :
+          <Redirect to="/home" /> :
           (<span></span>)
       }
       </div>
