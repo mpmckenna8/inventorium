@@ -9,6 +9,7 @@ import { emptyCollection, deleteUserCollection } from '../actions/collection_act
 
 import ItemFilters from '../containers/item_filters.js'
 
+import applyFilters from "../helpers/apply_filters.js"
 
 function hereaddItemToCollection(itemToAdd, dispatch) {
 
@@ -50,6 +51,9 @@ function emptyItems() {
 
 }
 
+console.log('filters to apply', props)
+let filteredCollectionItems = applyFilters(collection.items, [], props.filters)
+
 
   return (
     <div>
@@ -82,8 +86,10 @@ function emptyItems() {
           </button>
 
         </dialog>
+
+
       </div>
-      <ItemListView items={collection.items} dispatch={props.dispatch} />
+      <ItemListView items={filteredCollectionItems} dispatch={props.dispatch} />
 
       <h4>Items not yet in collecion</h4>
       {

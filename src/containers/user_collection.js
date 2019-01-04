@@ -58,6 +58,7 @@ class UserCollection extends Component {
         <UserCollectionView collection={collection}
           remaining_items={nonCollectionItems}
           dispatch={this.props.dispatch}
+          filters={this.props.Filters}
         />
 
       </div>

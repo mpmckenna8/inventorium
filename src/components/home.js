@@ -12,8 +12,10 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <h1 className="App-title">Inventorium</h1>
-      <ItemFilters />
+        <h1 className="App-title">
+          Inventorium
+        </h1>
+        <ItemFilters />
         <ItemList current_collection="all" />
       </div>
     )

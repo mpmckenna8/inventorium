@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 import categorizeItems from "../helpers/categorize_items.js";
+import applyFilters from "../helpers/apply_filters.js"
 
 import ItemListView from "../components/item_list_view.js"
 
@@ -22,68 +23,10 @@ class ItemList extends Component {
       this.setCurrentCollection('all');
     }
   }
-  applyFilters(items) {
-    console.log('applying filters.', items)
-    let filteredItems = items;
-    let filters = this.props.Filters
-    // apply category filters
-
-    filteredItems = items.filter( (item) => {
-      console.log(filters.visibleCategories.includes( item.category ))
-      return filters.visibleCategories.includes( item.category )
-    })
-
-    filteredItems = filteredItems.filter( (item) => {
-
-      if( ! this.props.Filters.showPositiveQuantity ) {
-        if( item.quantity > 0 ) {
-          return false
-        }
-      }
-      else if( ! this.props.Filters.showZeroQuantity ) {
-        if( item.quantity < 1 ) {
-          return false
-        }
-      }
-      return true;
-    })
-
-    // don't apply collection filters if on a colleciton pages
-    if(window.location.pathname.includes('usercollection') ||
-     this.props.Filters.selected_collections.includes('all')) {
-      console.log('not applying collection filters.')
-    }
-    else {
-
-      let collections = this.props.User.collections;
-
-      filteredItems = filteredItems.filter( (item) => {
-
-        let filterStat = false;
-
-        for( let collection of collections ) {
-          if( this.props.Filters.selected_collections.includes(collection.name) ) {
-          for( let collection_item of collection.items) {
-            if( collection_item.p_id === item.p_id) {
-              filterStat = true;
-            }
-          }
-        }
-      }
-
-        return filterStat
-      })
-    }
-
-    console.log('applying filters.', filteredItems)
-
-    return filteredItems;
-
-  }
     render() {
 //    console.log('this in itemList = ', this)
 
-    let categorizedItems = categorizeItems(this.applyFilters(this.props.User.items));
+    let categorizedItems = categorizeItems(applyFilters(this.props.User.items, this.props.User.collections, this.props.Filters));
     let itemCategories = Object.keys(categorizedItems);
 
     return (
