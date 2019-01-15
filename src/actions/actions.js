@@ -60,7 +60,7 @@ export const FETCH_ITEMS_SUCCESS = "FETCH_ITEMS_SUCCESS";
 
 const fetchItemsSuccess = (resData) => {
 
-  console.log('need to parse resData = ', resData)
+//  console.log('need to parse resData = ', resData)
   let user_items = resData.items
 
   let user_collections = setUpCollections(user_items, resData.bags)
@@ -84,7 +84,6 @@ const fetchItemsFailure = () => {
 export const SET_CURRENT_COLLECTION = "SET_CURRENT_COLLECTION"
 
 export const setCurrentCollection = (onCollection) => {
-
   return {
     type:SET_CURRENT_COLLECTION,
     onCollection: onCollection

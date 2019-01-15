@@ -42,8 +42,6 @@ function applyFilters(items, collections = [], filters={
   }
   else {
 
-    let collections = this.props.User.collections;
-
     filteredItems = filteredItems.filter( (item) => {
 
       let filterStat = false;

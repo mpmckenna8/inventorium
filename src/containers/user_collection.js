@@ -20,6 +20,7 @@ class UserCollection extends Component {
 
     this.setCurrentCollection(this.props.match.params.idnum);
   }
+
   setCurrentCollection(onCollection) {
       this.props.dispatch(setCurrentCollection(onCollection))
   }

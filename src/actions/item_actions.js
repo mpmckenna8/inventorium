@@ -50,6 +50,7 @@ function editItemSuccess(itemDetails) {
 
 export const ADD_ITEM = "ADD_ITEM";
 
+// tested in reducer_tests
 export const addItem = (newItem) => (dispatch, getState) => {
 
   let addItemUrl = 'http://localhost:8080/items/add'
@@ -62,7 +63,7 @@ export const addItem = (newItem) => (dispatch, getState) => {
 
   console.log('our sendData for new item', sendData)
 
-  fetch(addItemUrl, {
+  return fetch(addItemUrl, {
     method: 'POST',
     body: JSON.stringify(sendData),
 
@@ -76,8 +77,9 @@ export const addItem = (newItem) => (dispatch, getState) => {
   }
   )
   .then(json => {
-    console.log('trying to get some json back')
-    dispatch(addNewUserItemSuccess(newItem, json))
+    console.log('trying to get some json back', json, ' \n ,newItem = ', newItem)
+
+    return dispatch(addNewUserItemSuccess(newItem, json))
 
   })
 }
@@ -144,7 +146,7 @@ export const addNewUserItem = (newUserItem) => (dispatch, getState) => {
   })
    .then(res =>  res.json())
       .then(json => {
-        console.log('message bag from adding an item')
+        console.log('message back from adding an item', json)
         dispatch(addNewUserItemSuccess(newUserItem))
       })
 
