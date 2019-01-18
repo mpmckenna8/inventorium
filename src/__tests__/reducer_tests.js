@@ -13,6 +13,8 @@ const middlewares = [thunk]
 
 const mockStore = configureMockStore(middlewares)
 
+let mockData = {User:{needsUpdate:true, name:'test', items:[]}}
+
 
 import { setCurrentCollection, fetchItemsIfNeeded, } from '../actions/actions.js'
 
@@ -33,6 +35,7 @@ describe('>>>>> testing action and reducer for setCurrentCollection/SET_CURRENT_
     expect(props.User.currentCollection).toEqual('poggers')
   })
 })
+
 
 let testItem = {
   name: "testItemer",
@@ -56,8 +59,9 @@ describe(">>>>>>> Testing actions related to items.", () => {
       console.log('fetched items if needed')
 
       console.log('state of store', store.getState())
-      expect(store.getActions().length).toEqual(
-         1
+      mockData.User.items = store.getActions()[0].items;
+      expect(store.getActions()[0].items.length > 0).toEqual(
+         true
       )
 
     //  expect(store.getActions().length).toEqual(1)
@@ -65,7 +69,7 @@ describe(">>>>>>> Testing actions related to items.", () => {
     })
   })
 
-    it('+++ test to get add a test items', () => {
+    it('+++ test to get add a test item', () => {
 
     //  let store = mockStore( {rootReducer.User} )
       let store = mockStore( {User:{needsUpdate:true, name:'test'}} )
@@ -74,9 +78,15 @@ describe(">>>>>>> Testing actions related to items.", () => {
 
       return store.dispatch( addItem( testItem ) )
       .then( () => {
+        expect( store.getActions()[0].type).toEqual('ADD_NEW_USER_ITEM')
+        return store
 
-        return expect( store.getActions()[0].type).toEqual('ADD_NEW_USER_ITEM')
+      })
+      .then( (itemAddedStore) => {
+        let testItemId = itemAddedStore.getActions()[0].msg.data.item_id;
 
+
+        return expect(itemAddedStore.getActions()).toEqual([])
       })
 
     })

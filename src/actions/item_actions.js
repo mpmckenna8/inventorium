@@ -204,3 +204,17 @@ export const editItem = (itemDetails) => (dispatch, getState) => {
    })
 
 }
+
+export const deleteUserItem = (itemDetails) => (dispatch, getState) => {
+
+
+
+}
+
+const deleteUseritemSuccess = ( itemDeleted ) => {
+
+  return {
+    type:"USER_ITEM_DELETED",
+    item: itemDeleted
+  }
+}
