@@ -17,7 +17,7 @@ const delete_user_item = function(email, p_id, cb) {
 
     let itemIndex = updateInventory.findIndex( d => d=== p_id)
 
-    console.log('update inventory', updateInventory.length)
+//    console.log('update inventory', updateInventory.length)
 
     updateInventory = updateInventory.filter( (d, i) => i !== itemIndex)
     updateQuantities = updateQuantities.filter( (d, i) => i !== itemIndex)
