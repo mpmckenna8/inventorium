@@ -84,9 +84,13 @@ describe(">>>>>>> Testing actions related to items.", () => {
       })
       .then( (itemAddedStore) => {
         let testItemId = itemAddedStore.getActions()[0].msg.data.item_id;
+        expect(itemAddedStore.getActions()).toEqual([])
 
-
-        return expect(itemAddedStore.getActions()).toEqual([])
+        return itemAddedStore;
+      })
+      .then( itemAddedStore => {
+          // want to delete the test item from the user inventory.
+            
       })
 
     })

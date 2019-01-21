@@ -3,7 +3,7 @@
 import { combineReducers } from 'redux'
 import {FETCH_ITEMS_SUCCESS, SET_CURRENT_COLLECTION, ADD_ITEM_TO_COLLECTION_SUCCESS, SET_RETURN_HOME, FILTER_COLLECTION, SET_STOCK_FILTER} from '../actions/actions.js'
 
-import { EDIT_ITEM, RECIEVED_ALL_ITEMS, ADD_NEW_USER_ITEM } from '../actions/item_actions.js'
+import { EDIT_ITEM, RECIEVED_ALL_ITEMS, ADD_NEW_USER_ITEM, USER_ITEM_DELETED } from '../actions/item_actions.js'
 
 import {ADD_USER_COLLECTION_SUCCESS, COLLECTION_ADD_SUCCESS, EMPTY_COLLECTION_SUCCESS} from '../actions/collection_actions.js'
 
@@ -84,6 +84,15 @@ function User(state={
 
         onCollection.items = [];
       }
+      return Object.assign({}, state)
+    }
+    case USER_ITEM_DELETED: {
+      console.log('action in user item delete', action)
+      state.items = state.items.filter( (d) => {
+        return d.p_id !== action.item.p_id
+      })
+      state.returnHome = true;
+
       return Object.assign({}, state)
     }
     default:

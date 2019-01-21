@@ -26,7 +26,7 @@ app.all('/*', function(req, res, next) {
   //intercepts OPTIONS method
   if ('OPTIONS' === req.method) {
     //respond with 200
-    res.send(200);
+    res.sendStatus(200);
   }
   else {
   //move on

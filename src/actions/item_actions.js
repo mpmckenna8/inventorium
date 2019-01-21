@@ -207,14 +207,48 @@ export const editItem = (itemDetails) => (dispatch, getState) => {
 
 export const deleteUserItem = (itemDetails) => (dispatch, getState) => {
 
+  let deleteUserItemURL = "http://localhost:8888/delete_user_item";
+  let deleteData = {
+    user: getState().User,
+    item: itemDetails
+  }
+  return fetch(deleteUserItemURL, {
+    cache:'reload',
+    body: JSON.stringify(deleteData),
+    method: "POST",
+    headers: {
+      'content-type': 'application/json',
+      'accept': '*/*'
+    }
+  })
+  .then(res => res.json())
+  .then(json => {
 
+    console.log('json back from delete user item, ', json)
+    return dispatch(deleteUseritemSuccess(itemDetails, json))
+  })
+  .catch( err => {
+    dispatch(deleteUseritemFailure(itemDetails, err))
+  })
 
 }
 
-const deleteUseritemSuccess = ( itemDeleted ) => {
+export const USER_ITEM_DELETED = "USER_ITEM_DELETED";
+
+const deleteUseritemSuccess = ( itemDeleted, msg ) => {
 
   return {
-    type:"USER_ITEM_DELETED",
-    item: itemDeleted
+    type: USER_ITEM_DELETED,
+    item: itemDeleted,
+    msg: msg
+  }
+}
+
+const deleteUseritemFailure = ( itemDeleted, err ) => {
+
+  return {
+    type:"USER_ITEM_DELETE_FAIL",
+    item: itemDeleted,
+    error: err
   }
 }

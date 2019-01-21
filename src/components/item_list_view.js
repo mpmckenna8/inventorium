@@ -25,9 +25,6 @@ const ItemListView = (params) => {
     params.dispatch(editItemQuant(decrementedItem))
   }
 
-
-
-
   return (
     <div>
       {
@@ -52,7 +49,6 @@ const ItemListView = (params) => {
     }
     </div>
   )
-
 }
 
 

@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom'
 
-import {editItem} from "../actions/item_actions.js"
+import { editItem, deleteUserItem } from "../actions/item_actions.js"
 
 
 class EditItem extends Component {
@@ -16,6 +16,14 @@ class EditItem extends Component {
     let item_id = parseInt(this.props.match.params.idnum, 10);
     if(this.props.User.items.length > 0 ) {
       item = this.props.User.items.find( item => item.p_id === item_id )
+    }
+    if( !item ) {
+      item = {
+        category:'none',
+        name:'none',
+        quantity: 0,
+        description: 'blah'
+      }
     }
     return item
   }
@@ -40,6 +48,9 @@ class EditItem extends Component {
 
     this.props.dispatch(editItem(currentItem))
   }
+  deleteItem(item) {
+    this.props.dispatch(deleteUserItem(item))
+  }
 
   render() {
     let currentItem = this.getCurrentItem()
@@ -51,6 +62,7 @@ class EditItem extends Component {
 
 
     console.log('current item', currentItem )
+
     return (<div>
               <label>Name: </label>
               <input
@@ -69,7 +81,7 @@ class EditItem extends Component {
               <label>Category:</label>
               <select
                 name="select"
-                className="addSelect"    
+                className="addSelect"
                 id="catSelect" onChange={(e) => {
                      console.log('para is', e.target.value);
                   }}
@@ -99,6 +111,13 @@ class EditItem extends Component {
 
                   this.saveEdits(currentItem);
                 }}>Save Item Edit</button>
+
+                <button onClick={(e) => {
+                  this.deleteItem(currentItem);
+                  console.log('need to handle the delete item')
+                }}>
+                  Delete Item
+                </button>
 
 
         { (this.props.User.returnHome) ? (<Redirect to='/home'></Redirect>) : ""}

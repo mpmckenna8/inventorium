@@ -22,8 +22,8 @@ let testUser = {
  //get_user_items_and_collections('test', (inventory) => { //   console.log('test user inventory is: ', inventory) })
 
 
-add_user_item( testItem, testUser, (res) => {  console.log('res from adding a user item', res.rows) })
+//add_user_item( testItem, testUser, (res) => {  console.log('res from adding a user item', res.rows) })
 //console.log('need to delete user item');
 
 
-//delete_user_item('bebop', testItem.p_id, (res) => {   console.log(res) })
+delete_user_item('test', 158, (res) => {   console.log('res from delete_user_item', res) })
