@@ -86,7 +86,7 @@ export const addItem = (newItem) => (dispatch, getState) => {
 
 export const getDBItemsAndBags = () => (dispatch, getState) => {
 
-  let getAllurl = 'http://localhost:8080/allitems';
+  let getAllurl = 'http://localhost:8888/all_items_collections';
 
   return fetch(getAllurl, {
     //credentials: 'include', //pass cookies, for authentication
@@ -121,7 +121,7 @@ function recievedAllItems(json) {
   return {
     type: RECIEVED_ALL_ITEMS,
     items: json.items,
-    collectionTypes: json.collectionTypes
+    collectionTypes: json.collections
   }
 }
 
