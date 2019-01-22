@@ -35,13 +35,17 @@ class AddItem extends Component {
   render() {
     let newItems = this.nonUserItems();
 
-    console.log('newItems in AddItem', newItems);
+    console.log('newItems in AddItem', newItems, 'rops, ', this.props);
     return (
       <div>
-      <AddItemForm/>
+      <AddItemForm
+        addnewitem={this.addNewItem}
+        dispatch={this.props.dispatch} />
+
 
       <div>Add an existing item</div>
       <AddExistingItemList possible={newItems} />
+
       <AddItemForm
         addnewitem={this.addNewItem}
         dispatch={this.props.dispatch} />

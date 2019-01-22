@@ -129,7 +129,7 @@ export const ADD_NEW_USER_ITEM = "ADD_NEW_USER_ITEM";
 
 export const addNewUserItem = (newUserItem) => (dispatch, getState) => {
 
-  let urlend = urlStart + "existingitem"
+  let urlend = 'http://localhost:8888/' + "add_user_item"
 
   let sendjson = {item:newUserItem, user: {name: getState().User.name}}
 

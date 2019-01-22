@@ -1,5 +1,7 @@
 const delete_user_item = require('./queries/delete_user_item.js')
 let get_all_items_collections = require('./queries/get_all_items_collections');
+let add_user_item = require('./queries/add_user_item.js')
+
 // routes for db backend to go here
 module.exports = function(app) {
 
@@ -34,6 +36,22 @@ module.exports = function(app) {
       res.json(resData)
 
     })
+
+
+  })
+
+  app.post('/add_user_item', function( req, res) {
+    console.log('req for add user item, ', req.body)
+    let item = req.body.item;
+    let user = { email: req.body.user.name };
+
+    add_user_item(item, user, (dbRes) => {
+
+      console.log('added user item ', dbRes.rows);
+
+      res.json(dbRes.rows)
+    } )
+
 
 
   })

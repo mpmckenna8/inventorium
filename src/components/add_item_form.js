@@ -3,8 +3,11 @@ import React from 'react'
 import {addItem} from '../actions/item_actions.js'
 
 const AddItemForm = (props) => {
+
+
   let dispatch = props.dispatch;
-//  console.log('dispatch = ', dispatch)
+    console.log('dispatch props = ', props)
+
   let input;
   let description = ''
   let count = 0;
@@ -23,17 +26,17 @@ const AddItemForm = (props) => {
             }
 
     // h
-    if(this.dispatch) {
+    if(dispatch) {
 
-      this.dispatch(addItem(newItem))
+      dispatch(addItem(newItem))
 
     }
     else {
       console.log('there no dispatch')
     }
   }
-  this.dispatch = props.dispatch
-  submitNewItem.bind(this)
+
+  submitNewItem.bind(dispatch)
 
   return (
     <div>
@@ -67,7 +70,6 @@ const AddItemForm = (props) => {
         />
 
       </div>
-
       <br />
 
       <div className="addItemDiv">
@@ -95,7 +97,6 @@ const AddItemForm = (props) => {
           type="number"
           step=".1"
           defaultValue="1"
-
         />
       </div>
 
