@@ -77,7 +77,7 @@ export const addItem = (newItem) => (dispatch, getState) => {
   }
   )
   .then(json => {
-    console.log('trying to get some json back', json, ' \n ,newItem = ', newItem)
+    console.log(' got some json back from add item', json, ' \n ,newItem = ', newItem)
 
     return dispatch(addNewUserItemSuccess(newItem, json))
 
