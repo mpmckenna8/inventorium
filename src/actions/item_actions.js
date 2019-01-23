@@ -6,7 +6,7 @@ export const EDIT_ITEM = "EDIT_ITEM";
 
 export const editItemQuant = (itemDetails) => (dispatch, getState) => {
 
-  let editItemQuantUrl = "http://localhost:8080/items/editquant";
+  let editItemQuantUrl = "http://localhost:8888/items/editquant";
   let stateInfo = getState()
   console.log('username', stateInfo.User)
 
