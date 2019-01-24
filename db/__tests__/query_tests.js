@@ -22,9 +22,7 @@ let testUser = {
   email: 'bebop'
 }
 
-add_item(testItem, (add_res) => {
-   console.log('res from add_item, ', add_res)
-})
+//add_item(testItem, (add_res) => {   console.log('res from add_item, ', add_res) })
 
 //get_all_items_collections( (items, collections) => { console.log('all items = ', items, 'all collections, ', collections) })
 
@@ -38,4 +36,4 @@ add_item(testItem, (add_res) => {
 
 //update_item_quantity( testUser.name, testItem, (msg) => { console.log('result of updateing item quanity,', msg) })
 
-//delete_user_item('test', 158, (res) => {   console.log('res from delete_user_item', res) })
+delete_user_item('test', undefined, (res) => {   console.log('res from delete_user_item', res) })

@@ -53,7 +53,7 @@ export const ADD_ITEM = "ADD_ITEM";
 // tested in reducer_tests
 export const addItem = (newItem) => (dispatch, getState) => {
 
-  let addItemUrl = 'http://localhost:8080/items/add'
+  let addItemUrl = 'http://localhost:8888/items/add'
 
   let sendData = {
     item: newItem,

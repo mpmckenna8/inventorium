@@ -15,8 +15,11 @@ const add_user_item = function(item, user, cb) {
     if(err) { console.log('there was an error updateing the thing', err )
       throw err
     }
+
+    console.log('updated userinventory in db ', res.rows[0])
+
     cb(res)
-    console.log('updated userinventory in db ', res.rows)
+  //  console.log('updated userinventory in db ', res.rows)
 
     client.end();
   });
