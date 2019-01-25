@@ -64,9 +64,8 @@ app.post('/items/add', function(req, res) {
   let req_item = req.body.item;
   let userName = req.body.userName;
   add_item( req_item, (add_res) => {
-    console.log('add_res = ', add_res)
+//    console.log('add_res = ', add_res)
     req_item.p_id = add_res[0].p_id;
-
 
     add_user_item(req_item, {email: userName}, (add_user_item_res) => {
       res.json( { data: { newItem: req_item,

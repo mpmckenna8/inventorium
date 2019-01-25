@@ -14,10 +14,10 @@ let add_item = function(item, cb) {
   client.query(add_item_query, [item.name, item.description, item.weight, item.category], (err, res) => {
 
     if(err) {
-      console.log('err adding a new item to the db.')
+      console.log('err adding a new item to the db.', err)
       throw err;
     }
-    cb(res.rows);
+    cb(res.rows[0]);
     client.end();
   })
 
