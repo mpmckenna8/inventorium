@@ -2,6 +2,7 @@ const delete_user_item = require('./queries/delete_user_item.js')
 let get_all_items_collections = require('./queries/get_all_items_collections');
 let add_user_item = require('./queries/add_user_item.js')
 let add_item = require('./queries/add_item.js')
+let edit_item = require('./queries/edit_item.js')
 
 let update_item_quantity = require('./queries/update_item_quantity.js')
 
@@ -46,9 +47,9 @@ module.exports = function(app) {
       console.log('added user item ', dbRes.rows);
       res.json(dbRes.rows)
     } )
-
   })
 
+//
 app.post('/items/editquant', function(req, res) {
 
   let editItem = req.body.item;
@@ -77,5 +78,15 @@ app.post('/items/add', function(req, res) {
       })
     })
   })
+
+app.post('/items/edit', function(req, res) {
+
+  let req_item = req.body;
+  console.log('item to be edited, ', req_item);
+  edit_item( req_item , (edit_json) => {
+    res.json( edit_json )
+
+  })
+})
 
 }

@@ -14,7 +14,13 @@ function updateItem(newItem, cb) {
 
   client.query(queryStr, [newItem.p_id, newItem.name, newItem.description, newItem.weight, newItem.category],
     function( err, res) {
-      if(err) { console.log('there was an error updateing the thing', err );}
+      if(err) {
+        console.log('there was an error updateing the thing', err );
+        cb({
+              msg: 'error updateing item in db',
+              err: err
+          })
+      }
       console.log('updated item in db ', res)
       cb({
             msg: 'huopefully updated item in db',

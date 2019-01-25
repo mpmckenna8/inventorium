@@ -1,7 +1,4 @@
 // actions relating to itemList
-let urlStart = "http://localhost:8080/"
-
-
 export const EDIT_ITEM = "EDIT_ITEM";
 
 export const editItemQuant = (itemDetails) => (dispatch, getState) => {
@@ -178,9 +175,14 @@ function addNewUserItemSuccess(userItem, json) {
 
 export const editItem = (itemDetails) => (dispatch, getState) => {
 
-  let editItemURL = 'http://localhost:8080/items/edit';
+  if( itemDetails.updateQuantity ) {
+    console.log('need to update quantity, ')
+    dispatch(editItemQuant(itemDetails))
+  }
 
-  fetch(editItemURL, {
+  let editItemURL = 'http://localhost:8888/items/edit';
+
+  return fetch(editItemURL, {
     cache: "reload",
     body: JSON.stringify(itemDetails),
     mode: "cors", // no-corss cors, *same-origin
@@ -200,7 +202,8 @@ export const editItem = (itemDetails) => (dispatch, getState) => {
 
    })
    .catch(err => {
-     console.log('there was an err editing an item', err)
+
+     console.log('there was an err editing the item in the db, or maybe just an err with the response', err)
    })
 
 }

@@ -36,8 +36,14 @@ class EditItem extends Component {
     if(category === "other") {
       category = document.querySelector("#catText").value
     }
-    let quantity = document.querySelector("#editQuant").value;
 
+    let quantity = document.querySelector("#editQuant").value;
+    if( currentItem.quanity !== quantity) {
+      currentItem.updateQuantity = true;
+    }
+    else {
+      currentItem.updateQuantity = false;
+    }
     currentItem.name = name;
     currentItem.description = description;
     currentItem.category = category;
