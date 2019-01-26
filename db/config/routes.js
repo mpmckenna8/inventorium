@@ -56,7 +56,7 @@ app.post('/items/editquant', function(req, res) {
   let userName = req.body.user;
 
   update_item_quantity(userName, editItem, (msg ) => {
-    res.json({msg: msg})
+    res.json({msg: msg.msg})
   })
 })
 
@@ -85,7 +85,6 @@ app.post('/items/edit', function(req, res) {
   console.log('item to be edited, ', req_item);
   edit_item( req_item , (edit_json) => {
     res.json( edit_json )
-
   })
 })
 

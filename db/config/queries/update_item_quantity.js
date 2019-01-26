@@ -4,7 +4,7 @@ let pg = require('pg');
 
 var conString = "postgres://matthewmckenna@localhost/auth";
 
-let queryString = "select * from users where name=$1"
+let queryString = "select * from users where name=$1 or email=$1"
 
 
 
@@ -40,7 +40,7 @@ let update_item_quantity = (userName, item, cb) => {
       }
 
       console.log('should have updated item quantity its now', res.rows[0].inventoryquantity[itemIndex]);
-      cb('update should be successful')
+      cb({msg: 'update should be successful', item: item})
       client.end();
 
     })

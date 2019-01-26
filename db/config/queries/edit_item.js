@@ -23,7 +23,7 @@ function updateItem(newItem, cb) {
       }
       console.log('updated item in db ', res)
       cb({
-            msg: 'huopefully updated item in db',
+            msg: 'should have hopefully updated edited item in db',
             item: newItem
         })
 

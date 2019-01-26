@@ -37,9 +37,13 @@ function get_user_items_and_collections( name, cb) {
     //  console.log('res for items', res)
 
       let itemDetails = res.rows
+      let iitemdeets  = {}
       for( i in inventory ) {
 
-        let itemdeets = itemDetails.find( (d) => d.p_id === inventory[i].p_id )
+        itemdeets = itemDetails.find( (d) => d.p_id === inventory[i].p_id )
+        if(!itemdeets) {
+          console.log('there was not item found for', inventory[i])
+        }
         itemdeets.quantity = inventory[i].quantity;
         inventory[i] = itemdeets;
       }
