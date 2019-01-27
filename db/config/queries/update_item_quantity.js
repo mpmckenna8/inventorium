@@ -39,7 +39,7 @@ let update_item_quantity = (userName, item, cb) => {
         throw err
       }
 
-      console.log('should have updated item quantity its now', res.rows[0].inventoryquantity[itemIndex]);
+    //    console.log('should have updated item quantity its now', res.rows[0].inventoryquantity[itemIndex]);
       cb({msg: 'update should be successful', item: item})
       client.end();
 

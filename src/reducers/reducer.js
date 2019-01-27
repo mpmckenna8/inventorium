@@ -38,7 +38,6 @@ function User(state={
     case ADD_NEW_USER_ITEM: {
 
       let newItem = action.item;
-      newItem.p_id = action.msg.data.item_id
       state.items.push(newItem)
       state.returnHome = true;
       return Object.assign({}, state)

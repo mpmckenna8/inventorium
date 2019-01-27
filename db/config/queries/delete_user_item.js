@@ -33,7 +33,7 @@ const delete_user_item = function(email, p_id, cb) {
     updateInventory = updateInventory.filter( (d, i) => i !== itemIndex)
     updateQuantities = updateQuantities.filter( (d, i) => i !== itemIndex)
 
-    console.log('update inventory', updateInventory.length)
+//    console.log('update inventory', updateInventory.length)
 
     client.query(deleteUserItemQuery,
       [email, updateInventory,  updateQuantities],

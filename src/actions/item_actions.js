@@ -1,11 +1,11 @@
 // actions relating to itemList
 export const EDIT_ITEM = "EDIT_ITEM";
 
-export const editItemQuant = (itemDetails) => (dispatch, getState) => {
+export const editItemQuant = (itemDetails, collection_id) => (dispatch, getState) => {
 
   let editItemQuantUrl = "http://localhost:8888/items/editquant";
   let stateInfo = getState()
-  console.log('username', stateInfo.User)
+//  console.log('username', stateInfo.User)
 
   let postData = {
       user: stateInfo.User.name,
@@ -13,7 +13,7 @@ export const editItemQuant = (itemDetails) => (dispatch, getState) => {
       collection:stateInfo.User.currentCollection
     };
 
-  console.log('needing to post ,', postData)
+//  console.log('needing to post ,', postData)
 
   fetch(editItemQuantUrl, {
     cache: "reload",
@@ -126,11 +126,11 @@ export const ADD_NEW_USER_ITEM = "ADD_NEW_USER_ITEM";
 
 export const addNewUserItem = (newUserItem) => (dispatch, getState) => {
 
-  let urlend = 'http://localhost:8888/' + "add_user_item"
+  let addItemurl = "http://localhost:8888/add_user_item"
 
   let sendjson = {item:newUserItem, user: {name: getState().User.name}}
 
-  fetch(urlend, {
+  fetch(addItemurl, {
     cache: "reload",
     body: JSON.stringify(sendjson),
     mode: "cors", // no-corss cors, *same-origin

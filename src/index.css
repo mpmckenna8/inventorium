@@ -5,7 +5,7 @@ body {
 }
 
 div {
-  border: 1mm dashed red;
+  border: 1mm dashed #7BCC70;
 }
 
 .itemListDiv {
@@ -13,6 +13,9 @@ div {
   flex-direction: row;
 }
 
+.itemListDiv.num0 {
+  background: antiquewhite;
+}
 
 .itemListName {
   flex:4;

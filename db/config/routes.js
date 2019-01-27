@@ -5,6 +5,7 @@ let add_item = require('./queries/add_item.js')
 let edit_item = require('./queries/edit_item.js')
 
 let update_item_quantity = require('./queries/update_item_quantity.js')
+let update_collection_item_quantities = require('./queries/update_collection_quantities.js')
 
 // routes for db backend to go here
 module.exports = function(app) {
@@ -54,10 +55,18 @@ app.post('/items/editquant', function(req, res) {
 
   let editItem = req.body.item;
   let userName = req.body.user;
+  let onCollection = req.body.collection
 
-  update_item_quantity(userName, editItem, (msg ) => {
-    res.json({msg: msg.msg})
-  })
+  if( onCollection !== 'all' ) {
+    update_collection_item_quantities(onCollection, editItem, (update_collection_quantities_response) => {
+      res.json( update_collection_quantities_response )
+    })
+  }
+  else {
+    update_item_quantity(userName, editItem, ( msg ) => {
+      res.json({msg: msg.msg})
+    })
+  }
 })
 
 app.post('/items/add', function(req, res) {
@@ -66,7 +75,7 @@ app.post('/items/add', function(req, res) {
   let userName = req.body.userName;
   add_item( req_item, (add_res) => {
 //    console.log('add_res = ', add_res)
-    req_item.p_id = add_res[0].p_id;
+    req_item.p_id = add_res.p_id;
 
     add_user_item(req_item, {email: userName}, (add_user_item_res) => {
       res.json( { data: { newItem: req_item,
@@ -80,12 +89,12 @@ app.post('/items/add', function(req, res) {
   })
 
 app.post('/items/edit', function(req, res) {
-
   let req_item = req.body;
   console.log('item to be edited, ', req_item);
   edit_item( req_item , (edit_json) => {
     res.json( edit_json )
+    })
   })
-})
+
 
 }

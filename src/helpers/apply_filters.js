@@ -16,7 +16,7 @@ function applyFilters(items, collections = [], filters={
   // apply category filters
 
   filteredItems = items.filter( (item) => {
-    console.log(filters.visibleCategories.includes( item.category ))
+  //  console.log(filters.visibleCategories.includes( item.category ))
     return filters.visibleCategories.includes( item.category )
   })
 
@@ -38,7 +38,7 @@ function applyFilters(items, collections = [], filters={
   // don't apply collection filters if on a colleciton pages
   if(window.location.pathname.includes('usercollection') ||
     filters.selected_collections.includes('all')) {
-    console.log('not applying collection filters.')
+  //  console.log('not applying collection filters.')
   }
   else {
 
@@ -59,7 +59,7 @@ function applyFilters(items, collections = [], filters={
     })
   }
 
-  console.log('applyed filters.', filteredItems)
+//  console.log('applied filters.', filteredItems)
 
   return filteredItems;
 

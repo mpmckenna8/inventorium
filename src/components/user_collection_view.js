@@ -4,7 +4,7 @@ import React from 'react';
 
 import ItemListView from './item_list_view.js'
 //import ItemNotInCollection from "../containers/item_not_in_collection.js"
-import {addItemToCollection} from '../actions/actions.js'
+import {addItemToCollection, setCurrentCollection} from '../actions/actions.js'
 import { emptyCollection, deleteUserCollection } from '../actions/collection_actions.js'
 
 import ItemFilters from '../containers/item_filters.js'
@@ -24,6 +24,7 @@ const UserCollectionView = (props) => {
 
 
   let collection = props.collection;
+//  props.dispatch(setCurrentCollection(collection))
 
   function showEmptyCollection() {
 
@@ -50,6 +51,8 @@ function emptyItems() {
   closeEmptyCollecitonModal();
 
 }
+
+
 
 console.log('filters to apply', props)
 let filteredCollectionItems = applyFilters(collection.items, [], props.filters)
@@ -89,13 +92,12 @@ let filteredCollectionItems = applyFilters(collection.items, [], props.filters)
 
 
       </div>
-      <ItemListView items={filteredCollectionItems} dispatch={props.dispatch} />
-
+      <ItemListView items={filteredCollectionItems} dispatch={props.dispatch} current_collection={collection.name} />
       <h4>Items not yet in collecion</h4>
       {
         props.remaining_items.map( (item, i) => {
           return (
-            <div className="itemListDiv" key={item.name + i}>
+            <div className={"itemListDiv num"+i%2} key={item.name + i}>
               <div className="itemListName">
                 {item.name}
               </div>

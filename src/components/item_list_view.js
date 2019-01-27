@@ -13,16 +13,16 @@ const ItemListView = (params) => {
   }
 
   function incrementItemQuanity(itemEdit) {
-    console.log('need to increment', itemEdit)
+    console.log('need to increment', itemEdit, ' on collection', params.current_collection)
     let incrementedItem = itemEdit;
     incrementedItem.quantity = itemEdit.quantity + 1;
-    params.dispatch(editItemQuant(incrementedItem))
+    params.dispatch(editItemQuant(incrementedItem, params.current_collection))
   }
 
   function decrementItemQuantity(itemEdit) {
     let decrementedItem = itemEdit;
     decrementedItem.quantity = itemEdit.quantity - 1;
-    params.dispatch(editItemQuant(decrementedItem))
+    params.dispatch(editItemQuant(decrementedItem, params.current_collection))
   }
 
   return (
@@ -31,7 +31,7 @@ const ItemListView = (params) => {
         items.map( ( itemObj, i ) => {
       //  console.log('itemObj', itemObj)
         return (
-          <div className="itemListDiv" key={itemObj.name + i} >
+          <div className={"itemListDiv num"+i%2} key={itemObj.name + i} >
             <div className="itemListName">
               <Link to={"/item/" + itemObj.p_id}>
                 {itemObj.name}

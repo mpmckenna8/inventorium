@@ -37,6 +37,7 @@ class ItemList extends Component {
               <div key={category + i}><h2>{category}</h2>
                 <ItemListView
                   items={ categorizedItems[category] }
+                  current_collection="all"
                   dispatch={this.props.dispatch} />
               </div>
             )

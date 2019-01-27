@@ -21,17 +21,13 @@ function updateItem(newItem, cb) {
               err: err
           })
       }
-      console.log('updated item in db ', res)
+    //  console.log('updated item in db ', res)
       cb({
             msg: 'should have hopefully updated edited item in db',
             item: newItem
         })
-
       client.end()
-
     });
-
-
 }
 
 module.exports = updateItem;
