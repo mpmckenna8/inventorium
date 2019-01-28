@@ -10,7 +10,7 @@ let edit_item = require('../config/queries/edit_item.js')
 let add_user_item = require('../config/queries/add_user_item.js')
 
 // not tested
-//let get_user_items_and_collections = require('../config/queries/get_user_items_and_collections.js')
+let get_user_items_and_collections = require('../config/queries/get_user_items_and_collections.js')
 let update_item_quantity = require('../config/queries/update_item_quantity.js')
 let delete_user_item = require('../config/queries/delete_user_item.js')
 
@@ -21,7 +21,7 @@ let update_collection_item_quantities = require('../config/queries/update_collec
 let delete_item_by_name = require('../config/helpers/delete_item_by_name.js')
 
 
-let testItem =      { p_id: 3,
+let testItem =      { p_id: 232,
        name: 'test thing Itemer',
        description: 'a sweet sauce good on lots of stuff',
        weight: 1,
@@ -31,10 +31,25 @@ let testItem =      { p_id: 3,
       };
 
 let testUser = {
-  name: 'boop',
+  name: 'bebop',
   u_id: 1,
-  email: 'boop'
+  email: 'bebop'
 }
+
+
+test('Test for basic calls to get all items and user items', (t) => {
+
+  get_user_items_and_collections(testUser.name, (user_res) => {
+    console.log('res for gettin guser items and collections.', user_res)
+    t.ok(user_res.msg = "sucess getting user collection", "Gettting user items and collections." );
+
+
+  })
+
+  t.end()
+})
+
+
 
 /*
 test("tests for all the items", (t) => {
@@ -82,9 +97,9 @@ test("tests for all the items", (t) => {
 })
 */
 
+
+/*
 test("test for the Collections", (t) => {
-
-
 
   update_collection_item_quantities(51, testItem, (update_json) => {
 
@@ -93,13 +108,24 @@ test("test for the Collections", (t) => {
     t.end()
   })
 })
+*/
 
 
+/*
 
+delete_user_item(testUser.name, testItem.p_id, (res) => {
+//            console.log('res from delete_user_item', res)
+//  let itemInInventory = res.rows[0].inventory.find( d => {
+  //    return d === updated_item.p_id;
+//  })
 
+console.log(res)
+  t.ok( undefined == undefined , 'item deleted from user inventory.')
 
+})
 
-//delete_user_item('bebop', 141, (res) => {   console.log('res from delete_user_item', res.rows) })
+*/
+
 
 
 //get_all_items_collections( (items, collections) => { console.log('all items = ', items, 'all collections, ', collections) })
@@ -111,7 +137,3 @@ test("test for the Collections", (t) => {
 
 //add_user_item( testItem, testUser, (res) => {  console.log('res from adding a user item', res.rows) })
 //console.log('need to delete user item');
-
-//update_item_quantity( testUser.name, testItem, (msg) => { console.log('result of updateing item quanity,', msg) })
-
-//delete_user_item('test', testItem, (res) => {   console.log('res from delete_user_item', res) })

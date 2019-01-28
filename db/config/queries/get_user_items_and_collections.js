@@ -57,8 +57,13 @@ function get_user_items_and_collections( name, cb) {
         }
 
       //  console.log('all collections, hopefully', res.rows);
-        let userCollections = res.rows;
-        cb(inventory, userCollections)
+
+        let res_json = {
+          msg: "sucess getting user collection",
+          collections: res.rows,
+          inventory: inventory
+        }
+        cb(res_json)
 
         client.end();
 

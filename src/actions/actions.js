@@ -11,7 +11,7 @@ export const fetchItemsIfNeeded = (userName) => (dispatch, getState) => {
 const fetchItems = (userData) => (dispatch) => {
 
   if(shouldFetchItems(userData)) {
-    var fetchItemsUrl = 'http://localhost:8080/items/' +  userData.name;
+    var fetchItemsUrl = 'http://localhost:8888/items/' +  userData.name;
 
 
     return fetch(fetchItemsUrl, {
@@ -29,7 +29,7 @@ const fetchItems = (userData) => (dispatch) => {
     .then(res => res.json())
     .then(json => {
       //  console.log('sucessfully fetched items and response is', json)
-            let fetchedData =  Object.assign({}, {items:json.data.items, bags: json.data.bags })
+            let fetchedData =  Object.assign({}, {items:json.inventory, bags: json.collections })
         dispatch(fetchItemsSuccess(fetchedData))
     })
     .catch(error => {

@@ -226,8 +226,7 @@ export const deleteUserItem = (itemDetails) => (dispatch, getState) => {
   })
   .then(res => res.json())
   .then(json => {
-
-    console.log('json back from delete user item, ', json)
+  //  console.log('json back from delete user item, ', json)
     return dispatch(deleteUseritemSuccess(itemDetails, json))
   })
   .catch( err => {

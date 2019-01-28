@@ -1,8 +1,12 @@
 const delete_user_item = require('./queries/delete_user_item.js')
 let get_all_items_collections = require('./queries/get_all_items_collections');
+
+let get_user_items_and_collections = require('./queries/get_user_items_and_collections.js');
+
 let add_user_item = require('./queries/add_user_item.js')
 let add_item = require('./queries/add_item.js')
 let edit_item = require('./queries/edit_item.js')
+
 
 let update_item_quantity = require('./queries/update_item_quantity.js')
 let update_collection_item_quantities = require('./queries/update_collection_quantities.js')
@@ -15,6 +19,23 @@ module.exports = function(app) {
     console.log('blah default thing')
     res.send('heyo');
   });
+
+
+
+  app.get('/items/*', function(req, res) {
+
+    let userName = req.url.split('/')[2];
+    get_user_items_and_collections( userName, (items_collections_res) => {
+      console.log('sending user items and collections');
+      res.json(items_collections_res)
+    })
+
+  })
+
+
+
+
+
 
   app.post('/delete_user_item', function(req, res) {
 
@@ -38,6 +59,7 @@ module.exports = function(app) {
     })
 
   })
+
 
   app.post('/add_user_item', function( req, res) {
     console.log('req for add user item, ', req.body)
