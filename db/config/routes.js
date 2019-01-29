@@ -119,4 +119,18 @@ app.post('/items/edit', function(req, res) {
   })
 
 
+  app.post('/userbag/add', function(req, res) {
+  let data = req.body;
+  console.log('need to update in db, ', data)
+    addUserBag(data, function(bag_id) {
+      console.log('bag_id = ', bag_id)
+
+      data.bagInfo.up_id = bag_id;
+      data.bagInfo.items = [];
+
+      res.send(JSON.stringify(data))
+  })
+})
+
+
 }

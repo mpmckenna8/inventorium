@@ -16,10 +16,13 @@ let add_new_collection = function(collection, cb) {
       throw err
     }
 
+
+
     let add_res = {
       msg: "Sucessfully added collection to db",
-      collections: res.rows[0]
+      collection: res.rows[0]
     }
+    
     cb( add_res )
     client.end()
   })

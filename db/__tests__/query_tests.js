@@ -11,8 +11,10 @@ let add_user_item = require('../config/queries/add_user_item.js')
 
 // not tested
 let get_user_items_and_collections = require('../config/queries/get_user_items_and_collections.js')
-let add_new_collection = require('../config/queries/add_new_collection.js')
 
+// not connected to frontend
+let add_new_collection = require('../config/queries/add_new_collection.js')
+let add_new_user_collection = require('../config/queries/add_new_user_collection.js')
 
 let update_item_quantity = require('../config/queries/update_item_quantity.js')
 let delete_user_item = require('../config/queries/delete_user_item.js')
@@ -109,9 +111,17 @@ add_new_collection( test_collection, (new_coll_res) => {
 
   console.log('new collection added result is, ', new_coll_res);
 
-  delete_collection( test_collection.name, (del_res) => {
-    console.log('successfully deleted collection', del_res)
+  let newUserCollectionData = {
+    collection: new_coll_res.collection,
+    user: testUser
+    }
+
+  add_new_user_collection( newUserCollectionData, (new_user_coll_res) => {
+
+    console.log('result of adding new user collection = ', new_user_coll_res)
   })
+
+  //delete_collection( test_collection.name, (del_res) => { console.log('successfully deleted collection', del_res) })
 
 })
 
