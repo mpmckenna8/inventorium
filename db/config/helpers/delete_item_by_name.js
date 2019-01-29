@@ -6,7 +6,7 @@ var conString = "postgres://matthewmckenna@localhost/auth";
 let queryString = "DELETE FROM items where name=$1"
 
 
-let delete_item_by_name = (name, cb) => {
+let delete_item_by_name = function(name, cb) {
 
   let client = new pg.Client(conString);
 

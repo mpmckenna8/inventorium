@@ -11,6 +11,9 @@ let add_user_item = require('../config/queries/add_user_item.js')
 
 // not tested
 let get_user_items_and_collections = require('../config/queries/get_user_items_and_collections.js')
+let add_new_collection = require('../config/queries/add_new_collection.js')
+
+
 let update_item_quantity = require('../config/queries/update_item_quantity.js')
 let delete_user_item = require('../config/queries/delete_user_item.js')
 
@@ -19,7 +22,7 @@ let delete_user_item = require('../config/queries/delete_user_item.js')
 let update_collection_item_quantities = require('../config/queries/update_collection_quantities.js')
 
 let delete_item_by_name = require('../config/helpers/delete_item_by_name.js')
-
+let delete_collection = require('../config/helpers/delete_collection_by_name.js');
 
 let testItem =      { p_id: 232,
        name: 'test thing Itemer',
@@ -40,9 +43,8 @@ let testUser = {
 test('Test for basic calls to get all items and user items', (t) => {
 
   get_user_items_and_collections(testUser.name, (user_res) => {
-    console.log('res for gettin guser items and collections.', user_res)
+  //  console.log('res for gettin guser items and collections.', user_res)
     t.ok(user_res.msg = "sucess getting user collection", "Gettting user items and collections." );
-
 
   })
 
@@ -97,6 +99,21 @@ test("tests for all the items", (t) => {
 })
 */
 
+
+let test_collection = {
+  name: "test collection",
+  description: "collection for testing",
+  weight_capacity: 3.2
+}
+add_new_collection( test_collection, (new_coll_res) => {
+
+  console.log('new collection added result is, ', new_coll_res);
+
+  delete_collection( test_collection.name, (del_res) => {
+    console.log('successfully deleted collection', del_res)
+  })
+
+})
 
 /*
 test("test for the Collections", (t) => {
