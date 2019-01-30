@@ -16,7 +16,8 @@ function addUserCollection(data, cb) {
   let userName = data.user.name;
 
 
-  client.query(updatePacksString, [data.collection.coll_id, data.collection.userDescription, []], (err,res) => {
+  client.query(updatePacksString, [data.collection.coll_id, data.collection.userDescription, []],
+  (err,res) => {
     if(err) {
       console.log('error adding userpack to username. ', err)
     }

@@ -20,7 +20,7 @@ let update_item_quantity = require('../config/queries/update_item_quantity.js')
 let delete_user_item = require('../config/queries/delete_user_item.js')
 
 // collection things
-
+let add_item_to_collection = require('../config/queries/add_item_collection.js')
 let update_collection_item_quantities = require('../config/queries/update_collection_quantities.js')
 
 let delete_item_by_name = require('../config/helpers/delete_item_by_name.js')
@@ -105,7 +105,8 @@ test("tests for all the items", (t) => {
 let test_collection = {
   name: "test collection",
   description: "collection for testing",
-  weight_capacity: 3.2
+  weight_capacity: 3.2,
+  userDescription: "test user collection"
 }
 add_new_collection( test_collection, (new_coll_res) => {
 
@@ -119,6 +120,20 @@ add_new_collection( test_collection, (new_coll_res) => {
   add_new_user_collection( newUserCollectionData, (new_user_coll_res) => {
 
     console.log('result of adding new user collection = ', new_user_coll_res)
+
+    let addItemToCollection = {
+      item: {
+        p_id: 3,
+        quantity: 1000
+      },
+      itemClass: new_user_coll_res.up_id
+    }
+
+    add_item_to_collection(addItemToCollection, (add_item_json) => {
+
+      console.log( 'add item to json', add_item_json )
+    });
+
   })
 
   //delete_collection( test_collection.name, (del_res) => { console.log('successfully deleted collection', del_res) })

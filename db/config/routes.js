@@ -36,8 +36,6 @@ module.exports = function(app) {
 
 
 
-
-
   app.post('/delete_user_item', function(req, res) {
 
   //  console.log('need to delete user item,', req.body)
@@ -120,10 +118,10 @@ app.post('/items/add', function(req, res) {
     })
 
 
+// adds a new usercollection to the userpacks thing
   app.post('/usercollection/add', function(req, res) {
   let data = req.body;
   console.log('need to add a user collectio in db using data = ', data)
-
     add_new_user_collection(data, function(add_coll_res ) {
       console.log('add collection res = ', add_coll_res)
 
