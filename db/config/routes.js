@@ -6,6 +6,7 @@ let get_user_items_and_collections = require('./queries/get_user_items_and_colle
 let add_user_item = require('./queries/add_user_item.js')
 let add_item = require('./queries/add_item.js')
 let edit_item = require('./queries/edit_item.js')
+let add_new_user_collection = require('./queries/add_new_user_collection.js')
 
 
 let update_item_quantity = require('./queries/update_item_quantity.js')
@@ -110,25 +111,23 @@ app.post('/items/add', function(req, res) {
     })
   })
 
-app.post('/items/edit', function(req, res) {
-  let req_item = req.body;
-  console.log('item to be edited, ', req_item);
-  edit_item( req_item , (edit_json) => {
-    res.json( edit_json )
+  app.post('/items/edit', function(req, res) {
+    let req_item = req.body;
+    console.log('item to be edited, ', req_item);
+    edit_item( req_item , (edit_json) => {
+      res.json( edit_json )
+      })
     })
-  })
 
 
-  app.post('/userbag/add', function(req, res) {
+  app.post('/usercollection/add', function(req, res) {
   let data = req.body;
-  console.log('need to update in db, ', data)
-    addUserBag(data, function(bag_id) {
-      console.log('bag_id = ', bag_id)
+  console.log('need to add a user collectio in db using data = ', data)
 
-      data.bagInfo.up_id = bag_id;
-      data.bagInfo.items = [];
+    add_new_user_collection(data, function(add_coll_res ) {
+      console.log('add collection res = ', add_coll_res)
 
-      res.send(JSON.stringify(data))
+      res.send(JSON.stringify(add_coll_res))
   })
 })
 

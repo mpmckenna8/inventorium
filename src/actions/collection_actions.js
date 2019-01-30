@@ -2,11 +2,11 @@
 
 export const addUserCollection = (newCollection) => (dispatch, getState) => {
   let data = {
-    collectionInfo: newCollection,
-    userName: getState().User.name
+    collection: newCollection,
+    user: getState().User
   }
 
-  let addUserCollectionURL = "http://localhost:8080/usercollection/add";
+  let addUserCollectionURL = "http://localhost:8888/usercollection/add";
 
   return fetch(addUserCollectionURL, {
     cache: "reload",
