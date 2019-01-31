@@ -18,7 +18,7 @@ let add_new_user_collection = require('../config/queries/add_new_user_collection
 
 let update_item_quantity = require('../config/queries/update_item_quantity.js')
 let delete_user_item = require('../config/queries/delete_user_item.js')
-
+let delete_collection_item = require('../config/queries/delete_collection_item.js')
 // collection things
 let add_item_to_collection = require('../config/queries/add_item_collection.js')
 let update_collection_item_quantities = require('../config/queries/update_collection_quantities.js')
@@ -108,6 +108,7 @@ let test_collection = {
   weight_capacity: 3.2,
   userDescription: "test user collection"
 }
+
 add_new_collection( test_collection, (new_coll_res) => {
 
   console.log('new collection added result is, ', new_coll_res);
@@ -132,12 +133,19 @@ add_new_collection( test_collection, (new_coll_res) => {
     add_item_to_collection(addItemToCollection, (add_item_json) => {
 
       console.log( 'add item to json', add_item_json )
-    });
+
+      let item_collection = add_item_json.data.item;
+      let up_id = add_item_json.data.itemClass
+      delete_collection_item(up_id, item_collection.p_id, (del_col_item_res) => {
+          console.log('should have deleted item added to the collection', del_col_item_res)
+      }
+    );
 
   })
 
   //delete_collection( test_collection.name, (del_res) => { console.log('successfully deleted collection', del_res) })
 
+})
 })
 
 /*
