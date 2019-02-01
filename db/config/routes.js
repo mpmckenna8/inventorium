@@ -7,7 +7,7 @@ let add_user_item = require('./queries/add_user_item.js')
 let add_item = require('./queries/add_item.js')
 let edit_item = require('./queries/edit_item.js')
 let add_new_user_collection = require('./queries/add_new_user_collection.js')
-
+let add_item_to_collection = require('./queries/add_item_collection.js')
 
 let update_item_quantity = require('./queries/update_item_quantity.js')
 let update_collection_item_quantities = require('./queries/update_collection_quantities.js')
@@ -115,7 +115,8 @@ app.post('/items/add', function(req, res) {
     edit_item( req_item , (edit_json) => {
       res.json( edit_json )
       })
-    })
+  })
+
 
 
 // adds a new usercollection to the userpacks thing
@@ -126,8 +127,19 @@ app.post('/items/add', function(req, res) {
       console.log('add collection res = ', add_coll_res)
 
       res.send(JSON.stringify(add_coll_res))
+    })
   })
-})
+
+  app.post('/items/addtocollection', function(req, res) {
+    let data = req.body;
+
+    add_item_to_collection(data, (add_item_json) => {
+
+      res.json(add_item_json)
+    })
+
+  })
+
 
 
 }

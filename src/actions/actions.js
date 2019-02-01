@@ -98,7 +98,7 @@ export const addItemToCollection = (item) => (dispatch, getState) => {
   console.log('json being sent to add item to collection', sendjson)
 
 
-  let addItemToCollectionURL = 'http://localhost:8080/items/addtobag'
+  let addItemToCollectionURL = 'http://localhost:8888/items/addtocollection'
   return fetch(addItemToCollectionURL, {
     cache: "reload",
     mode: "cors", // no-corss cors, *same-origin

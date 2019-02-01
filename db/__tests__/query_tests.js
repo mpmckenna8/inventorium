@@ -163,23 +163,3 @@ function collectionTests() {
 
   })
 }
-
-
-/*
-test("test for the Collections", (t) => {
-
-  update_collection_item_quantities(51, testItem, (update_json) => {
-
-    t.ok(update_json.msg === "quantity should be updated", "item in collection update.")
-
-    t.end()
-  })
-})
-*/
-
-
-
-
-
-//add_user_item( testItem, testUser, (res) => {  console.log('res from adding a user item', res.rows) })
-//console.log('need to delete user item');

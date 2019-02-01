@@ -19,15 +19,12 @@ const delete_user_item = function(email, p_id, cb) {
   client.query(userquerystring, [ email], (err, res) => {
     if(err) {
       console.log('err getting user items ', err)
-
     }
 
     let updateInventory = res.rows[0].inventory;
     let updateQuantities = res.rows[0].inventoryquantity;
 
     let itemIndex = updateInventory.findIndex( d => d === p_id)
-
-//    console.log('update inventory', updateInventory.length)
 
     updateInventory = updateInventory.filter( (d, i) => i !== itemIndex)
     updateQuantities = updateQuantities.filter( (d, i) => i !== itemIndex)
@@ -41,7 +38,6 @@ const delete_user_item = function(email, p_id, cb) {
           console.log("error in delete user item query", err)
           throw err
         }
-
         let delete_item_res = {
           msg: "delet_user_item sucessful",
           res: res
@@ -49,10 +45,7 @@ const delete_user_item = function(email, p_id, cb) {
         cb(delete_item_res)
         client.end()
       })
-
   })
-
-
 }
 
 delete_user_item('bebop', 251, (resp) => {  console.log('res deleting item', resp) })
