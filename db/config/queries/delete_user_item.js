@@ -55,5 +55,6 @@ const delete_user_item = function(email, p_id, cb) {
 
 }
 
+delete_user_item('bebop', 251, (resp) => {  console.log('res deleting item', resp) })
 
 module.exports = delete_user_item;
