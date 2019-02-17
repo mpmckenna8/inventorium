@@ -2,6 +2,8 @@
 const assert = require('assert')
 let test = require('tape')
 
+let User = require('../config/models/user.js')
+
 let get_all_items_collections = require('../config/queries/get_all_items_collections.js');
 
 // tested
@@ -42,6 +44,11 @@ let testUser = {
   email: 'bebop'
 }
 
+let modUser = new User('blah', 'boop', 'pass')
+
+console.log(modUser)
+
+modUser.save();
 
 test('Test for basic calls to get all items and user items', (t) => {
 
@@ -129,11 +136,11 @@ function collectionTests() {
 
   test("testing colletion queries ", (t) => {
     add_new_collection( test_collection, (new_coll_res) => {
-      console.log('new collection added result is, ', new_coll_res);
+    //  console.log('new collection added result is, ', new_coll_res);
       t.ok(new_coll_res.msg === "Sucessfully added collection to db", "added collection to db" )
       add_new_user_collection( newUserCollectionData, (new_user_coll_res) => {
 
-        console.log('result of adding new user collection = ', new_user_coll_res)
+      //  console.log('result of adding new user collection = ', new_user_coll_res)
 
         let addItemToCollection = {
             item: testItem,
@@ -147,9 +154,9 @@ function collectionTests() {
             let up_id = add_item_json.data.itemClass
             delete_collection_item(up_id, item_collection.p_id,
               (del_col_item_res) => {
-                console.log('should have deleted item added to the collection', del_col_item_res)
+            //    console.log('should have deleted item added to the collection', del_col_item_res)
                 delete_collection( test_collection.name, (del_res) => {
-                  console.log('successfully deleted collection', del_res)
+            //      console.log('successfully deleted collection', del_res)
                   t.end()
                   clear_test_items()
                 })
