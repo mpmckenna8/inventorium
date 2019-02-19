@@ -1,11 +1,12 @@
 
 import React, {Component} from 'react';
 import {Link } from 'react-router-dom'
+import {connect} from 'react-redux';
 
 class HeaderLinks extends Component {
 
   render() {
-
+    console.log('this in links', this)
 
     return (
       <div className="headerLinkDiv">
@@ -25,10 +26,25 @@ class HeaderLinks extends Component {
           New Collection
           </Link>
         </div>
+
+        <div><Link to={"/user_profile/" + this.props.User.u_id}>
+          User: {this.props.User.name}
+          </Link>
+        </div>
       </div>
 
     )
   }
 }
 
-export default HeaderLinks
+
+
+const mapStateToProps = state => {
+  let headerProps = {
+    user: state.User
+  }
+
+  return state
+}
+
+export default connect(mapStateToProps)(HeaderLinks)

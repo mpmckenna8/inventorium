@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import {editItemQuant} from "../actions/item_actions.js"
-import {setReturnHome} from "../actions/actions.js"
 
 
 const ItemListView = (params) => {

@@ -21,6 +21,8 @@ import NewCollection from "./containers/newcollection.js"
 import NewUserCollection from "./containers/new_user_collection.js"
 import NewCollectionType from "./containers/new_collection_type.js"
 import EditItem from "./containers/edit_item.js"
+import User_Profile from './containers/user_profile.js'
+
 class App extends Component {
   render() {
     return (
@@ -47,6 +49,7 @@ class App extends Component {
                 <Route path="/edit_item/:idnum" component={EditItem}/>
 
                 <Route path="/new_collection_type" component={NewCollectionType}/>
+                <Route path="/user_profile/:u_id" component={User_Profile}/>
                 <Route component={NoMatch}/>
               </Switch>
       </div>

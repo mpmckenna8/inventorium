@@ -4,7 +4,7 @@ import React from 'react';
 
 import ItemListView from './item_list_view.js'
 //import ItemNotInCollection from "../containers/item_not_in_collection.js"
-import {addItemToCollection, setCurrentCollection} from '../actions/actions.js'
+import { addItemToCollection } from '../actions/actions.js'
 import { emptyCollection, deleteUserCollection } from '../actions/collection_actions.js'
 
 import ItemFilters from '../containers/item_filters.js'
@@ -21,7 +21,6 @@ function hereaddItemToCollection(itemToAdd, dispatch) {
 }
 
 const UserCollectionView = (props) => {
-
 
   let collection = props.collection;
 //  props.dispatch(setCurrentCollection(collection))
@@ -52,9 +51,7 @@ function emptyItems() {
 
 }
 
-
-
-console.log('filters to apply', props)
+//console.log('filters to apply', props)
 let filteredCollectionItems = applyFilters(collection.items, [], props.filters)
 
 
