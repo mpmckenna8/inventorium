@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {Link } from 'react-router-dom'
 
 
 class User_Profile extends Component {
@@ -10,6 +11,11 @@ class User_Profile extends Component {
     return (
       <div>
         <h4>Profile for {this.props.name}</h4>
+
+        { this.props.name === 'test' ? (
+          <div>Currently on test profile,<Link to="/login"> log in? </Link>
+          </div>) : 'need a logout link and action'}
+
         <div>
           Number of Items: { this.props.items.length }
         </div>
