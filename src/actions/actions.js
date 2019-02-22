@@ -8,6 +8,7 @@ export const fetchItemsIfNeeded = (userName) => (dispatch, getState) => {
   return dispatch(fetchItems(getState().User))
 }
 
+
 const fetchItems = (userData) => (dispatch) => {
 
   if(shouldFetchItems(userData)) {
@@ -182,11 +183,47 @@ export const setReturnHome = (returnValue) => {
 export const SET_STOCK_FILTER = "SET_STOCK_FILTER";
 
 export const setFilterStocked = ( filterInfo  = { type: "stocked",
-      checked: true} )  => {
-
+  checked: true} )  => {
         return {
             type:SET_STOCK_FILTER,
             mode: filterInfo.type,
             checked: filterInfo.checked
         }
       }
+
+
+const login_user_success = (res) => {
+        return {
+          type: "LOGIN_SUCCESS",
+          data: res
+        }
+      }
+
+export const login_user = ( userData) => (dispatch, getState ) => {
+  var loginUrl = 'http://localhost:8888/login';
+
+  console.log('trying to login with ')
+
+  return fetch( loginUrl, {
+    cache: "reload",
+    mode: "cors", // no-corss cors, *same-origin
+    referrer: "no-referrer", // no-referrer, *client
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': '*/*'
+    },
+    body: JSON.stringify(userData)
+  })
+  .then(res => res.json())
+  .then(json => {
+
+    dispatch( login_user_success(json) )
+  })
+  .catch(err => {
+
+    console.log('error logging in user', err)
+  })
+
+
+}

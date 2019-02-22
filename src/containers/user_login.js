@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {login_user} from "../actions/actions.js"
 
 
 class UserLogin extends Component {
   login_submit(e) {
     let login_info = {
-      name: document.getElementById('username_login').value,
+      username: document.getElementById('username_login').value,
       password: document.getElementById('login_password').value
 
     }
 
     console.log('need to submit login', e, login_info)
+    this.props.dispatch(login_user(login_info))
 
 
   }
@@ -27,7 +29,7 @@ class UserLogin extends Component {
         <label>password</label>
         <input type="text" id="login_password" />
         <br/>
-        <button onClick={this.login_submit}>
+        <button onClick={(e) => this.login_submit(e)}>
           submit
         </button>
       </div>

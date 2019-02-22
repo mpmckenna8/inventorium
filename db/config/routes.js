@@ -13,7 +13,7 @@ let update_item_quantity = require('./queries/update_item_quantity.js')
 let update_collection_item_quantities = require('./queries/update_collection_quantities.js')
 
 // routes for db backend to go here
-module.exports = function(app) {
+module.exports = function(app,passport) {
 
   app.get('/', function(req, res) {
     //  res.render('index.ejs'); // load the index.ejs file
@@ -134,12 +134,34 @@ app.post('/items/add', function(req, res) {
     let data = req.body;
 
     add_item_to_collection(data, (add_item_json) => {
-
       res.json(add_item_json)
     })
 
   })
 
+  app.post('/login', function(req, res, next) {
+
+    passport.authenticate('local',
+     function(err, user, info) {
+       // If this function gets called, authentication was successful.
+       // `req.user` contains the authenticated user.
+      // console.log('auth supposed success for', req.user )
+
+      console.log('maybe auth worked for ,', user.name)
+      console.log('err = ', err)
+    //  console.log('user = ', user)
+      if(user){
+        console.log('there is a user and they were authenticated!')
+        return res.send(JSON.stringify({msg:'logged in good',
+        user: user}));
+      }
+      else {
+        console.log('no user')
+        return res.send(JSON.stringify({msg: 'login fail'}))
+      }
+    }) (req, res, next)
+  }
+);
 
 
 }

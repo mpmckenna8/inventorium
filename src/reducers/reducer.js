@@ -23,6 +23,14 @@ function User(state={
       state.returnHome = action.value;
       return Object.assign({}, state);
     }
+    case 'LOGIN_SUCCESS': {
+      let user_data = action.data.user
+      state.email = user_data.email;
+      state.name = user_data.name;
+      state.u_id = user_data.u_id;
+      state.needsUpdate = true;
+      return Object.assign({}, state)
+    }
     case FETCH_ITEMS_SUCCESS: {
       state.items = action.items;
       state.collections = action.collections;

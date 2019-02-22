@@ -11,8 +11,10 @@ let User = function(
     email: email,
     password: password,
     inventory: inventory,
-    save: saveUser
-
+    save: saveUser,
+    findOne: () => {
+        return {'user from db'}
+    }
   }
   return userObj
 }
