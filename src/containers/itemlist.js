@@ -7,7 +7,7 @@ import applyFilters from "../helpers/apply_filters.js"
 
 import ItemListView from "../components/item_list_view.js"
 
-import {setCurrentCollection, setReturnHome} from '../actions/actions.js';
+import {setCurrentCollection, setReturnHome,fetchItemsIfNeeded } from '../actions/actions.js';
 
 class ItemList extends Component {
   setCurrentCollection(onCollection) {
@@ -16,6 +16,12 @@ class ItemList extends Component {
   }
   componentDidMount() {
     console.log('pathname = ', window.location.pathname)
+
+    if( this.props.User.needsUpdate) {
+      console.log('need to update user stuff');
+      this.props.dispatch(fetchItemsIfNeeded(this.props.User.name))
+
+    }
 
     if( window.location.pathname === "/home") {
       console.log('need to set return home to false.')

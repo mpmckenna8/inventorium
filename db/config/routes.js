@@ -147,7 +147,7 @@ app.post('/items/add', function(req, res) {
        // `req.user` contains the authenticated user.
       // console.log('auth supposed success for', req.user )
 
-      console.log('maybe auth worked for ,', user.name)
+    //  console.log('maybe auth worked for ,', user)
       console.log('err = ', err)
     //  console.log('user = ', user)
       if(user){

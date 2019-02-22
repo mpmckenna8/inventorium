@@ -3,7 +3,7 @@
 //import fetch from 'isomorphic-fetch';
 import setUpCollections from '../helpers/set_up_user_collection.js'
 
-export const fetchItemsIfNeeded = (userName) => (dispatch, getState) => {
+export const fetchItemsIfNeeded = () => (dispatch, getState) => {
 
   return dispatch(fetchItems(getState().User))
 }

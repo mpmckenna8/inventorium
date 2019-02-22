@@ -29,6 +29,7 @@ function User(state={
       state.name = user_data.name;
       state.u_id = user_data.u_id;
       state.needsUpdate = true;
+      state.returnHome = true;
       return Object.assign({}, state)
     }
     case FETCH_ITEMS_SUCCESS: {

@@ -1,6 +1,7 @@
 // container for adding an existing items
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 
 
 import AddExistingItemView from '../components/add_existing_item_view.js'
@@ -24,7 +25,7 @@ render() {
     <div>
       <AddExistingItemView dispatch={this.props.dispatch} itemToAdd={itemToAdd}/>
       {
-        ( this.props.User.returnHome ? "" : "" )
+        ( this.props.User.returnHome ? ( <Redirect to="/home" />) : "" )
       }
     </div>
   )
