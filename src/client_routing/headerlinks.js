@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 class HeaderLinks extends Component {
 
   render() {
-    console.log('this in links', this)
+  //  console.log('this in links', this)
 
     return (
       <div className="headerLinkDiv">

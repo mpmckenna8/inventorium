@@ -9,6 +9,13 @@ export const setUserFromStorage = (userData) => {
   }
 }
 
+export const logoutUser = () => {
+
+  return {
+    type:"LOGOUT_USER"
+  }
+}
+
 export const fetchItemsIfNeeded = () => (dispatch, getState) => {
 
   return dispatch(fetchItems(getState().User))

@@ -8,7 +8,6 @@ import ItemList from '../containers/itemlist.js';
 import ItemFilters from '../containers/item_filters.js'
 
 class Home extends Component {
-
   render() {
     return (
       <div>
@@ -19,9 +18,7 @@ class Home extends Component {
         <ItemList current_collection="all" />
       </div>
     )
-
 }
-
 }
 
 export default withRouter(Home)

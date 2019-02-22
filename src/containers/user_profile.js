@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link } from 'react-router-dom'
-
+import {logoutUser} from '../actions/actions.js'
 
 class User_Profile extends Component {
+  logout() {
 
+    console.log('need to log out user')
+    this.props.dispatch(logoutUser())
+  }
 
   render() {
     console.log('props for user profile', this.props)
@@ -14,7 +18,12 @@ class User_Profile extends Component {
 
         { this.props.name === 'test' ? (
           <div>Currently on test profile,<Link to="/login"> log in? </Link>
-          </div>) : 'need a logout link and action'}
+          </div>) : (
+            <button id="logout_button"
+              onClick={(e) => {
+                this.logout()
+              }}
+              >Logout</button> )}
 
         <div>
           Number of Items: { this.props.items.length }

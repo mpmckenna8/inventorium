@@ -22,6 +22,16 @@ function User(state={
     case "SET_USER_FROM_STORAGE":
       state = action.userInfo;
       return Object.assign({}, state);
+    case "LOGOUT_USER": {
+
+      state.name = 'test';
+      state.email = 'test';
+      state.u_id = 1;
+      state.needsUpdate = true;
+      state.returnHome = true;
+
+      return Object.assign({}, state)
+    }
     case SET_RETURN_HOME: {
       state.returnHome = action.value;
       return Object.assign({}, state);

@@ -11,7 +11,7 @@ function applyFilters(items, collections = [], filters={
     visibleCategories:[]
   }
 ) {
-  console.log('applying filters.', items)
+//  console.log('applying filters.', items)
   let filteredItems = items;
   // apply category filters
 
