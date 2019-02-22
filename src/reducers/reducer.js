@@ -19,6 +19,9 @@ function User(state={
   redirectTo:""
 }, action) {
   switch (action.type) {
+    case "SET_USER_FROM_STORAGE":
+      state = action.userInfo;
+      return Object.assign({}, state);
     case SET_RETURN_HOME: {
       state.returnHome = action.value;
       return Object.assign({}, state);
@@ -35,7 +38,7 @@ function User(state={
     case FETCH_ITEMS_SUCCESS: {
       state.items = action.items;
       state.collections = action.collections;
-
+      localStorage.setItem('User', JSON.stringify( state ))
       return Object.assign({}, state)
     }
     case EDIT_ITEM: {

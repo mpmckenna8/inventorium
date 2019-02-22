@@ -1,7 +1,13 @@
 // main file for actions
-
 //import fetch from 'isomorphic-fetch';
 import setUpCollections from '../helpers/set_up_user_collection.js'
+
+export const setUserFromStorage = (userData) => {
+  return {
+    type: "SET_USER_FROM_STORAGE",
+    userInfo: userData
+  }
+}
 
 export const fetchItemsIfNeeded = () => (dispatch, getState) => {
 

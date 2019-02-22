@@ -27,11 +27,11 @@ class ItemList extends Component {
       console.log('need to set return home to false.')
       this.props.dispatch(setReturnHome(false))
       this.setCurrentCollection('all');
+    //  localStorage.setItem('User', JSON.stringify(this.props.User))
     }
   }
     render() {
 //    console.log('this in itemList = ', this)
-
     let categorizedItems = categorizeItems(applyFilters(this.props.User.items, this.props.User.collections, this.props.Filters));
     let itemCategories = Object.keys(categorizedItems);
 
