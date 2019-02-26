@@ -23,6 +23,7 @@ import NewCollectionType from "./containers/new_collection_type.js"
 import EditItem from "./containers/edit_item.js"
 import User_Profile from './containers/user_profile.js'
 import UserLogin from './containers/user_login.js'
+import SignUp from './containers/signup.js'
 
 
 class App extends Component {
@@ -54,8 +55,7 @@ class App extends Component {
                 <Route path="/user_profile/:u_id" component={User_Profile}/>
 
                 <Route path="/login" component={UserLogin}/>
-
-
+                <Route path="/signup" component={SignUp}/>
 
                 <Route component={NoMatch}/>
               </Switch>

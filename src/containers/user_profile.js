@@ -18,6 +18,8 @@ class User_Profile extends Component {
 
         { this.props.name === 'test' ? (
           <div>Currently on test profile,<Link to="/login"> log in? </Link>
+          <br />
+          <div>Or <Link to="/signup">sign up for a new account</Link></div>
           </div>) : (
             <button id="logout_button"
               onClick={(e) => {
