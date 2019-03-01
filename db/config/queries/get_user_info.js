@@ -24,5 +24,6 @@ module.exports = function(user_name, cb) {
     else {
       return cb(err, userInfo)
     }
+    client.end()
   })
 }

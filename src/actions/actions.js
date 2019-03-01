@@ -9,6 +9,42 @@ export const setUserFromStorage = (userData) => {
   }
 }
 
+export const addNewUser = (userInfo) => (dispatch, getState) => {
+
+  let addUserURL = 'http://localhost:8888/signup'
+
+  return fetch(addUserURL, {
+    cache: "reload",
+    mode: "cors", // no-corss cors, *same-origin
+    referrer: "no-referrer", // no-referrer, *client
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': '*/*'
+    },
+    body: JSON.stringify(userInfo)
+  })
+  .then(res => {
+    return res.json()
+  })
+  .then(json => {
+
+    console.log('result from adding user, ', json)
+
+    return dispatch(signUpUserDone(json))
+  })
+
+}
+
+const signUpUserDone = (json) => {
+
+  console.log('attempted to sign up a new user', json)
+  return {
+    type:"SIGN_UP_NEW_USER",
+    json: json
+  }
+}
+
 export const logoutUser = () => {
 
   return {

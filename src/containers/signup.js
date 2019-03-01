@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
+import {addNewUser} from '../actions/actions.js'
 
 class SignUp extends Component {
   attempt_signup() {
@@ -12,8 +12,15 @@ class SignUp extends Component {
       password: ''
     }
 
+    user.name = document.querySelector('#signup_name')
+                  .value
+    user.password = document
+                    .querySelector('#signup_password')
+                    .value
+
 
     console.log( 'user = ', user)
+    this.props.dispatch(addNewUser(user))
   }
   render() {
 

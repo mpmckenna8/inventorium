@@ -44,12 +44,19 @@ let testUser = {
   email: 'bebop'
 }
 
-let modUser = new User('blah', 'boop', 'pass')
+
+let modUser = new User('happo', 'happo', 'pass');
+
+
 
 console.log(modUser)
 
-modUser.save();
+let booop = modUser.save();
 
+
+
+
+/*
 test('Test for basic calls to get all items and user items', (t) => {
 
   get_user_items_and_collections(testUser.name, (user_res) => {
@@ -170,3 +177,5 @@ function collectionTests() {
 
   })
 }
+
+*/

@@ -12,6 +12,8 @@ let add_item_to_collection = require('./queries/add_item_collection.js')
 let update_item_quantity = require('./queries/update_item_quantity.js')
 let update_collection_item_quantities = require('./queries/update_collection_quantities.js')
 
+let User = require('./models/user.js')
+
 // routes for db backend to go here
 module.exports = function(app,passport) {
 
@@ -162,6 +164,19 @@ app.post('/items/add', function(req, res) {
     }) (req, res, next)
   }
 );
+
+app.post('/signup', (req, res) => {
+  let reqUser = req.body
+  let possibleUser = new User(reqUser.name,reqUser.name, reqUser.password)
+
+  console.log('trying to save', possibleUser)
+  possibleUser.save( (userthing) => {
+
+    console.log('maybe a new user has been done', userthing)
+    res.send(JSON.stringify( {msg: "signing up user", userInfo: userthing} ))
+
+  })
+})
 
 
 }
