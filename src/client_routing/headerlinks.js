@@ -9,6 +9,11 @@ class HeaderLinks extends Component {
   //  console.log('this in links', this)
 
     return (
+      <div className="headerLinks">
+      <div className="user_header"><Link to={"/user_profile/" + this.props.User.u_id}>
+        User: {this.props.User.name}
+        </Link>
+      </div>
       <div className="headerLinkDiv">
         <div className="headLink">
           <Link id="homelink" to="/home">Home</Link>
@@ -26,11 +31,9 @@ class HeaderLinks extends Component {
           New Collection
           </Link>
         </div>
-
-        <div><Link to={"/user_profile/" + this.props.User.u_id}>
-          User: {this.props.User.name}
-          </Link>
         </div>
+
+
       </div>
 
     )

@@ -37,6 +37,18 @@ div {
 
 }
 
+.user_header a {
+  color: pink;
+  float: right;
+}
+
+.user_header a:visited {
+  color: yellow;
+}
+
+a :visited {
+  color: pink;
+}
 
 .invisibleFilters {
   display: none;

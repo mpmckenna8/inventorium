@@ -27,8 +27,8 @@ function saveUser( cb ) {
   let savingUser = this
   let userInfo = getUserInfo(this.name, (err, userinfo) => {
       console.log('userInfo is', userinfo, ', err = ', err);
-
-      if( err.msg === 'user not found with given username') {
+// this needs to get fixed
+      if( err ) {
         // should be good to add new user
         if( this.name != '') {
           return addNewUser( savingUser.name, savingUser.password, (userDB) => {

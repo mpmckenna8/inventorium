@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom'
-import {Redirect} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import {login_user} from "../actions/actions.js"
 
@@ -13,10 +12,8 @@ class UserLogin extends Component {
       password: document.getElementById('login_password').value
 
     }
-
     console.log('need to submit login', e, login_info)
     this.props.dispatch(login_user(login_info))
-
 
   }
   render() {
@@ -35,7 +32,10 @@ class UserLogin extends Component {
         <button onClick={(e) => this.login_submit(e)}>
           submit
         </button>
-        { (this.props.User.returnHome) ? (<Redirect to="/home" />) : ('') }
+        {
+          (this.props.returnHome) ? (<Redirect to="/home" />) : ('')
+        }
+
 
       </div>
     )

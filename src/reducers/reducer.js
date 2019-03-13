@@ -22,6 +22,17 @@ function User(state={
     case "SET_USER_FROM_STORAGE":
       state = action.userInfo;
       return Object.assign({}, state);
+    case "SIGN_UP_NEW_USER": {
+      let userInfo = action.json.newUser;
+      state.u_id = userInfo.u_id;
+      state.name = userInfo.name;
+      state.email = userInfo.email;
+      state.items = [];
+      state.collections = [];
+      state.returnHome = true;
+
+      return Object.assign({}, state)
+    }
     case "LOGOUT_USER": {
 
       state.name = 'test';
