@@ -10,8 +10,9 @@ class HeaderLinks extends Component {
 
     return (
       <div className="headerLinks">
-      <div className="user_header"><Link to={"/user_profile/" + this.props.User.u_id}>
-        User: {this.props.User.name}
+      <div className="user_header">
+        <Link to={"/user_profile/" + this.props.User.u_id}>
+          User: {this.props.User.name}
         </Link>
       </div>
       <div className="headerLinkDiv">
@@ -20,11 +21,9 @@ class HeaderLinks extends Component {
         </div>
         <div className="headLink">
           <Link to="/newitem">New Item</Link>
-
         </div>
         <div className="headLink">
           <Link to="/collections">Collections</Link>
-
         </div>
         <div className="headLink" >
           <Link to="/new_collection">
@@ -32,10 +31,7 @@ class HeaderLinks extends Component {
           </Link>
         </div>
         </div>
-
-
       </div>
-
     )
   }
 }
@@ -46,8 +42,7 @@ const mapStateToProps = state => {
   let headerProps = {
     user: state.User
   }
-
-  return state
+  return Object.assign({}, state)
 }
 
 export default connect(mapStateToProps)(HeaderLinks)

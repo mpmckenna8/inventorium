@@ -12,6 +12,9 @@ let add_item_to_collection = require('./queries/add_item_collection.js')
 let update_item_quantity = require('./queries/update_item_quantity.js')
 let update_collection_item_quantities = require('./queries/update_collection_quantities.js')
 
+let empty_user_collection = require("./queries/empty_user_collection.js");
+
+
 let User = require('./models/user.js')
 
 // routes for db backend to go here
@@ -179,5 +182,16 @@ app.post('/signup', (req, res) => {
   })
 })
 
+app.post('/emptycollection/*', (req, res) => {
+  let req_data = req.body
+  console.log('data for empty collection', req_data)
+  empty_user_collection( {mode: req_data.options}, req_data.uc_id, ( err, db_res) => {
+
+    res.send(JSON.stringify( {msg:"emptying collection", data: db_res} ))
+
+  })
+
+
+})
 
 }

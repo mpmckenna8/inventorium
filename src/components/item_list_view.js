@@ -12,10 +12,12 @@ const ItemListView = (params) => {
   }
 
   function incrementItemQuanity(itemEdit) {
-    console.log('need to increment', itemEdit, ' on collection', params.current_collection)
+    console.log('need to increment', itemEdit,
+    ' on collection', params.current_collection)
     let incrementedItem = itemEdit;
     incrementedItem.quantity = itemEdit.quantity + 1;
-    params.dispatch(editItemQuant(incrementedItem, params.current_collection))
+    params.dispatch(editItemQuant(incrementedItem,
+       params.current_collection))
   }
 
   function decrementItemQuantity(itemEdit) {
@@ -43,7 +45,8 @@ const ItemListView = (params) => {
               {itemObj.quantity}
               <button className="itemQuantityIncerementor" onClick={ (d) =>  incrementItemQuanity(itemObj) }>+</button>
             </div>
-          </div>)
+          </div>
+        )
         })
     }
     </div>

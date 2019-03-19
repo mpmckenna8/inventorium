@@ -38,7 +38,7 @@ module.exports = function(options = {mode:"setToZero"}, up_id, cb) {
     })
 
   }
-  else if( options.mode === "empty") {
+  else if( options.mode === "emptyArray") {
 
     console.log('should be clearing all items')
     client.query(setCollectionQuantitiesToZero,

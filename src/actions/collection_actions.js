@@ -83,8 +83,8 @@ const collectionAddedToDB = (newCollection) => {
 
 export const emptyCollection = (  collection, options = {mode:"setToZero"} ) =>
   (dispatch, getState) => {
-    let emptyData = {uc_id:collection.up_id, options:options.mode}
-    let emptyURL = "http://localhost:8080/emptycollection/" + emptyData.uc_id
+    let emptyData = {uc_id: collection.up_id, options:options.mode}
+    let emptyURL = "http://localhost:8888/emptycollection/" + emptyData.uc_id
     return fetch(emptyURL,
       {
         method: "POST",
