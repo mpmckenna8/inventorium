@@ -26,6 +26,8 @@ let delete_user_collection = require('../config/queries/delete_user_collection.j
 let add_item_to_collection = require('../config/queries/add_item_collection.js')
 let update_collection_item_quantities = require('../config/queries/update_collection_quantities.js')
 
+let empty_user_collection = require("../config/queries/empty_user_collection.js");
+
 let delete_item_by_name = require('../config/helpers/delete_item_by_name.js')
 let delete_collection = require('../config/helpers/delete_collection_by_name.js');
 
@@ -47,11 +49,14 @@ let testUser = {
 
 let modUser = new User('happo', 'happo', 'pass');
 
+empty_user_collection({mode:"empty"}, 46, (err, collection_json) => {
+  console.log('result from empty collection', collection_json)
+})
 
 
-console.log(modUser)
+//console.log(modUser)
 
-let booop = modUser.save();
+//let booop = modUser.save();
 
 
 

@@ -81,6 +81,7 @@ app.post('/items/editquant', function(req, res) {
   let onCollection = req.body.collection
 
   if( onCollection !== 'all' ) {
+    console.log('need to update a specific collection quantity')
     update_collection_item_quantities(onCollection, editItem, (update_collection_quantities_response) => {
       res.json( update_collection_quantities_response )
     })
