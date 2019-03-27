@@ -5,7 +5,7 @@ let pg = require('pg');
 var conString = "postgres://matthewmckenna@localhost/auth";
 
 
-let updatePacksString = 'INSERT INTO userpack(packtype, name, items) VALUES($1, $2, $3) returning up_id'
+let updatePacksString = 'INSERT INTO userpack(packtype, name, items) VALUES($1, $2, $3) returning *'
 
 
 let updateUserString = 'UPDATE users SET userpacks=array_append(userpacks, $1) where name=$2;'
@@ -15,7 +15,6 @@ function addUserCollection(data, cb) {
   client.connect();
   let userName = data.user.name;
 
-
   client.query(updatePacksString, [data.collection.coll_id, data.collection.userDescription, []],
   (err,res) => {
     if(err) {
@@ -23,6 +22,7 @@ function addUserCollection(data, cb) {
     }
 
     console.log('tring to update userpacks, res.rows[0] = ', res.rows[0])
+
     let add_user_collection_res = {
       res: res,
       msg:"Sucess adding a user collection to userpacks table.",
@@ -39,7 +39,7 @@ function addUserCollection(data, cb) {
                 if(err) throw err;
                 client.end();
                 add_user_collection_res.up_id = bag_id
-                cb(add_user_collection_res)
+                cb(add_user_collection_res )
             })
         }
         else {

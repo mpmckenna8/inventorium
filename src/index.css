@@ -58,3 +58,7 @@ a :visited {
   display: flex;
   flex-direction: row;
 }
+
+.itemInputDescription.addInput {
+  width: 80%;
+}

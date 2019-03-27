@@ -94,7 +94,7 @@ function User(state={
       console.log('need to update the user collections', action)
 
       state.collections.push(action.msg.collectionInfo)
-      state.redirectTo = "/usercollection/" + action.msg.collectionInfo.up_id;
+      state.redirectTo = "/usercollection/" + action.msg.up_id;
       return Object.assign({}, state)
 
     }
