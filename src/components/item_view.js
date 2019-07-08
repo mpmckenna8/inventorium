@@ -17,6 +17,7 @@ const ItemView = (params) => {
   }
   return (
     <div>
+      <tooltip id="item_tooltip"><p> item info here</p> </tooltip>
       <h2 className="itemHeader">{currentItem.name}</h2>
 
 <Link to={"/edit_item/" + currentItem.p_id}>Edit the current item {currentItem.name}</Link>
