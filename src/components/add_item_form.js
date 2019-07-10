@@ -26,6 +26,15 @@ const AddItemForm = (props) => {
             }
 
     // h
+
+    // change category from other to text input if text input is not null
+    if( newItem.category === 'other' ) {
+      if( document.getElementsByClassName('categoryText')[0].value ) {
+        newItem.category =  document.getElementsByClassName('categoryText')[0].value
+      }
+    }
+
+
     if(dispatch) {
 
       dispatch(addItem(newItem))
