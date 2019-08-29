@@ -54,7 +54,7 @@ const addUserCollectionFailure = () => {
 
 export const addCollectionType = (collectionDetails) => (dispatch, getState) => {
 
-  let addCollectionTypeURL = "http://localhost:8080/collections/add";
+  let addCollectionTypeURL = "http://localhost:8888/collections/add";
   return fetch(addCollectionTypeURL, {
   body: JSON.stringify(collectionDetails),
     method: "POST",
@@ -67,9 +67,12 @@ export const addCollectionType = (collectionDetails) => (dispatch, getState) => 
     error => console.log('there was an error in the add itemclass call thing to db, ', error)
   ).then(
     json => {
-      return dispatch(collectionAddedToDB(json.data.collectionInfo))
+
+      console.log('json from add new collection type, ', json)
+      return dispatch(collectionAddedToDB(collectionDetails, json.msg))
     }
   )
+  .catch(err => console.log('there was an err adding the thing'))
 }
 
 export const COLLECTION_ADD_SUCCESS = 'COLLECTION_ADD_SUCCESS'
