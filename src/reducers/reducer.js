@@ -93,7 +93,10 @@ function User(state={
     case ADD_USER_COLLECTION_SUCCESS: {
       console.log('need to update the user collections', action)
 
-      state.collections.push(action.msg.collectionInfo)
+      let new_collection = action.newCollection;
+      new_collection.up_id = action.msg.up_id;
+      new_collection.items = []
+      state.collections.push(action.newCollection)
       state.redirectTo = "/usercollection/" + action.msg.up_id;
       return Object.assign({}, state)
 

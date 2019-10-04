@@ -31,14 +31,11 @@ const ItemListView = (params) => {
 
 
     <div>
-
       {
         items.map( ( itemObj, i ) => {
       //  console.log('itemObj', itemObj)
         return (
-
           <div className={"itemListDiv num"+i%2} key={itemObj.name + i} >
-
 
             <div className="itemListName">
               <Link to={"/item/" + itemObj.p_id}>
